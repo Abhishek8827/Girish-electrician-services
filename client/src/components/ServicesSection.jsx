@@ -1,25 +1,212 @@
 import { motion } from "framer-motion";
-import { Building2, Check, CircuitBoard, HardHat, House, Lightbulb, ShieldCheck, Siren, Wrench } from "lucide-react";
-import { useState } from "react";
+import {
+  ArrowRight,
+  Building2,
+  Check,
+  CircuitBoard,
+  HardHat,
+  House,
+  Lightbulb,
+  ShieldCheck,
+  Siren,
+  Wrench,
+} from "lucide-react";
+import { useId, useState } from "react";
 import { serviceCategories } from "../data/siteContent";
 import SectionHeading from "./SectionHeading";
 
 const sceneByCategory = {
-  home: { icon: House, label: "Residential environment", detail: "Rooms, fixtures, and protected home circuits" },
-  office: { icon: Building2, label: "Workplace environment", detail: "Workstations, lighting zones, and structured power" },
-  construction: { icon: HardHat, label: "Construction environment", detail: "Conduit routes, distribution planning, and new infrastructure" },
-  panel: { icon: CircuitBoard, label: "Panel environment", detail: "Distribution circuits, breakers, and professional assessment" },
-  emergency: { icon: Siren, label: "Fault-response environment", detail: "A clear route from reported fault to safe assessment" },
-  lighting: { icon: Lightbulb, label: "Lighting environment", detail: "Purposeful fixtures, controls, and energy-conscious upgrades" },
+  home: {
+    icon: House,
+    label: "Residential environment",
+    detail: "Rooms, fixtures, and protected home circuits",
+  },
+  office: {
+    icon: Building2,
+    label: "Workplace environment",
+    detail: "Workstations, lighting zones, and structured power",
+  },
+  construction: {
+    icon: HardHat,
+    label: "Construction environment",
+    detail: "Conduit routes, distribution planning, and new infrastructure",
+  },
+  panel: {
+    icon: CircuitBoard,
+    label: "Panel environment",
+    detail: "Distribution circuits, breakers, and professional assessment",
+  },
+  emergency: {
+    icon: Siren,
+    label: "Fault-response environment",
+    detail: "A clear route from reported fault to safe assessment",
+  },
+  lighting: {
+    icon: Lightbulb,
+    label: "Lighting environment",
+    detail: "Purposeful fixtures, controls, and energy-conscious upgrades",
+  },
 };
+
+function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
+  return (
+    <button
+      type="button"
+      role="tab"
+      id={tabId}
+      aria-controls={panelId}
+      aria-selected={isActive}
+      onClick={onClick}
+      className={`shrink-0 rounded-full border px-5 py-3 text-left text-sm font-bold transition-colors lg:w-full lg:rounded-xl ${
+        isActive
+          ? "border-brand-yellow bg-brand-yellow text-brand-black"
+          : "border-white/10 bg-brand-black/30 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white"
+      }`}
+    >
+      {category.label}
+    </button>
+  );
+}
+
+function handleRequestService(serviceType) {
+  // Find the service type dropdown in the request form
+  const serviceTypeSelect = document.getElementById("serviceType");
+
+  if (serviceTypeSelect) {
+    // Find the option that most closely matches the category title
+    const matchingOption = Array.from(serviceTypeSelect.options).find(
+      (option) =>
+        serviceType
+          .toLowerCase()
+          .includes(option.text.split(" ")[0].toLowerCase()),
+    );
+
+    serviceTypeSelect.value = matchingOption
+      ? matchingOption.value
+      : serviceType;
+  }
+}
+
+function ServiceTabPanel({ category, scene, panelId, tabId }) {
+  const SceneIcon = scene.icon;
+
+  return (
+    <div
+      role="tabpanel"
+      id={panelId}
+      aria-labelledby={tabId}
+      className="relative overflow-hidden rounded-3xl border border-white/10 bg-brand-black p-7 sm:p-10"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-brand-yellow/10 blur-3xl"
+      />
+      <div className="relative grid gap-10 xl:grid-cols-[1fr_0.8fr] xl:items-center">
+        <div>
+          <div className="flex items-center gap-3 text-brand-yellow">
+            <CircuitBoard size={22} />
+            <span className="text-xs font-bold uppercase tracking-[0.2em]">
+              {category.label}
+            </span>
+          </div>
+          <h3 className="mt-6 max-w-xl text-2xl font-bold text-brand-white sm:text-3xl">
+            {category.title}
+          </h3>
+          <p className="mt-4 max-w-xl leading-7 text-brand-gray">
+            {category.description}
+          </p>
+
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {category.services.map((service) => (
+              <li
+                key={service}
+                className="flex items-center gap-3 text-sm font-medium text-brand-white"
+              >
+                <Check
+                  size={18}
+                  className="shrink-0 text-brand-yellow"
+                  aria-hidden="true"
+                />
+                {service}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#request-service"
+            onClick={() => handleRequestService(category.title)}
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-base font-bold text-brand-black transition-transform hover:scale-[1.02] active:scale-95"
+          >
+            Request Service
+            <ArrowRight size={18} />
+          </a>
+        </div>
+
+        <motion.div
+          key={category.id}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="relative min-h-64 overflow-hidden rounded-2xl border border-brand-yellow/25 bg-brand-dark p-6"
+          aria-label={`${scene.label}: ${scene.detail}`}
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(250,204,21,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.15)_1px,transparent_1px)] [background-size:28px_28px]"
+          />
+          <div className="relative flex h-full flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="rounded-lg border border-brand-yellow/40 bg-brand-black/60 p-3 text-brand-yellow">
+                <SceneIcon size={27} aria-hidden="true" />
+              </span>
+              <Wrench
+                size={22}
+                className="text-brand-yellow/70"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="my-7 grid grid-cols-4 gap-2" aria-hidden="true">
+              {[0, 1, 2, 3].map((index) => (
+                <span
+                  key={index}
+                  className={`h-12 rounded-md border ${index === 1 ? "border-brand-yellow bg-brand-yellow/25" : "border-white/15 bg-brand-black/50"}`}
+                />
+              ))}
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-yellow">
+                {scene.label}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-brand-gray">
+                {scene.detail}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="xl:col-span-2 flex items-start gap-3 border-t border-white/10 pt-6 text-sm leading-6 text-brand-gray">
+          <ShieldCheck
+            size={19}
+            className="mt-0.5 shrink-0 text-brand-yellow"
+            aria-hidden="true"
+          />
+          Complex electrical work should be assessed and carried out by a
+          qualified professional.
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ServicesSection() {
   const [activeCategory, setActiveCategory] = useState(serviceCategories[0]);
-  const activeScene = sceneByCategory[activeCategory.id];
-  const SceneIcon = activeScene.icon;
+  const id = useId();
 
   return (
-    <section id="services" className="scroll-mt-24 bg-brand-dark py-20 sm:py-28">
+    <section
+      id="services"
+      className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           eyebrow="Service explorer"
@@ -33,84 +220,34 @@ function ServicesSection() {
             role="tablist"
             aria-label="Electrical service categories"
           >
-            {serviceCategories.map((category) => {
-              const isActive = category.id === activeCategory.id;
-
+            {serviceCategories.map((category, index) => {
+              const tabId = `${id}-tab-${index}`;
+              const panelId = `${id}-panel-${index}`;
               return (
-                <button
+                <ServiceTab
                   key={category.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
+                  category={category}
+                  isActive={category.id === activeCategory.id}
                   onClick={() => setActiveCategory(category)}
-                  className={`shrink-0 rounded-full border px-5 py-3 text-left text-sm font-bold transition-colors lg:w-full lg:rounded-xl ${
-                    isActive
-                      ? "border-brand-yellow bg-brand-yellow text-brand-black"
-                      : "border-white/10 bg-brand-black/30 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white"
-                  }`}
-                >
-                  {category.label}
-                </button>
+                  tabId={tabId}
+                  panelId={panelId}
+                />
               );
             })}
           </div>
 
-          <div
-            role="tabpanel"
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-brand-black p-7 sm:p-10"
-          >
-            <div aria-hidden="true" className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-brand-yellow/10 blur-3xl" />
-            <div className="relative grid gap-10 xl:grid-cols-[1fr_0.8fr] xl:items-center">
-              <div>
-                <div className="flex items-center gap-3 text-brand-yellow">
-                  <CircuitBoard size={22} />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em]">{activeCategory.label}</span>
-                </div>
-                <h3 className="mt-6 max-w-xl text-2xl font-bold text-brand-white sm:text-3xl">
-                  {activeCategory.title}
-                </h3>
-                <p className="mt-4 max-w-xl leading-7 text-brand-gray">{activeCategory.description}</p>
-
-                <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-                  {activeCategory.services.map((service) => (
-                    <li key={service} className="flex items-center gap-3 text-sm font-medium text-brand-white">
-                      <Check size={18} className="shrink-0 text-brand-yellow" aria-hidden="true" />
-                      {service}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <motion.div
-                key={activeCategory.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="relative min-h-64 overflow-hidden rounded-2xl border border-brand-yellow/25 bg-brand-dark p-6"
-                aria-label={`${activeScene.label}: ${activeScene.detail}`}
-              >
-                <div aria-hidden="true" className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(250,204,21,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.15)_1px,transparent_1px)] [background-size:28px_28px]" />
-                <div className="relative flex h-full flex-col justify-between">
-                  <div className="flex items-center justify-between">
-                    <span className="rounded-lg border border-brand-yellow/40 bg-brand-black/60 p-3 text-brand-yellow"><SceneIcon size={27} aria-hidden="true" /></span>
-                    <Wrench size={22} className="text-brand-yellow/70" aria-hidden="true" />
-                  </div>
-                  <div className="my-7 grid grid-cols-4 gap-2" aria-hidden="true">
-                    {[0, 1, 2, 3].map((index) => <span key={index} className={`h-12 rounded-md border ${index === 1 ? "border-brand-yellow bg-brand-yellow/25" : "border-white/15 bg-brand-black/50"}`} />)}
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-yellow">{activeScene.label}</p>
-                    <p className="mt-2 text-sm leading-6 text-brand-gray">{activeScene.detail}</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <div className="xl:col-span-2 flex items-start gap-3 border-t border-white/10 pt-6 text-sm leading-6 text-brand-gray">
-                <ShieldCheck size={19} className="mt-0.5 shrink-0 text-brand-yellow" aria-hidden="true" />
-                Complex electrical work should be assessed and carried out by a qualified professional.
-              </div>
-            </div>
-          </div>
+          {serviceCategories.map((category, index) => {
+            const isActive = category.id === activeCategory.id;
+            return isActive ? (
+              <ServiceTabPanel
+                key={category.id}
+                category={category}
+                scene={sceneByCategory[category.id]}
+                panelId={`${id}-panel-${index}`}
+                tabId={`${id}-tab-${index}`}
+              />
+            ) : null;
+          })}
         </div>
       </div>
     </section>
