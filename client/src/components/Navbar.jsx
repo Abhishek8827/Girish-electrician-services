@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Menu, X, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 import { businessConfig } from "../data/businessConfig";
 
 const Navbar = () => {
@@ -39,7 +40,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-5">
           {["Services", "Process", "About", "Safety"].map((item) => (
             <a
               key={item}
@@ -49,6 +50,18 @@ const Navbar = () => {
               {item}
             </a>
           ))}
+          <Link
+            to="/track-request"
+            className="text-sm font-bold text-brand-white transition-colors hover:text-brand-yellow"
+          >
+            Track Request
+          </Link>
+          <Link
+            to="/admin"
+            className="text-sm font-bold text-brand-white transition-colors hover:text-brand-yellow"
+          >
+            Admin Login
+          </Link>
           <a
             href="#request-service"
             className="bg-brand-yellow text-brand-black px-5 py-2 rounded-full font-bold text-sm glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95"
@@ -91,6 +104,20 @@ const Navbar = () => {
                 {item}
               </a>
             ))}
+            <Link
+              to="/track-request"
+              className="text-lg font-bold text-brand-white hover:text-brand-yellow"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Track Request
+            </Link>
+            <Link
+              to="/admin"
+              className="text-lg font-bold text-brand-white hover:text-brand-yellow"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Admin Login
+            </Link>
             <a
               href="#request-service"
               className="bg-brand-yellow text-brand-black px-5 py-3 rounded-xl font-bold glow-yellow"

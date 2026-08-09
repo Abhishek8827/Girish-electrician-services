@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const express = require("express");
-const { rateLimit } = require("express-rate-limit");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const ServiceRequest = require("../models/ServiceRequest");
@@ -9,15 +8,7 @@ const requireAdmin = require("../middleware/requireAdmin");
 const router = express.Router();
 const allowedStatuses = ["Pending", "Contacted", "Scheduled", "Completed", "Cancelled"];
 
-const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  limit: 5,
-  standardHeaders: "draft-8",
-  legacyHeaders: false,
-  message: { success: false, message: "Too many login attempts. Try again in 15 minutes." },
-});
-
-router.post("/login", loginLimiter, async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD_HASH || !process.env.JWT_SECRET) {
       return res.status(503).json({ success: false, message: "Admin access has not been configured yet." });

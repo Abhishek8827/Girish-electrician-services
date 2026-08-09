@@ -1,4 +1,4 @@
-import { ArrowLeft, LockKeyhole } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, LockKeyhole } from "lucide-react";
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { loginAdmin } from "../api/admin";
@@ -8,6 +8,7 @@ function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   if (localStorage.getItem("girish_admin_token")) return <Navigate to="/admin/requests" replace />;
@@ -36,7 +37,15 @@ function AdminLoginPage() {
         <p className="mt-3 leading-7 text-brand-gray">Use the credentials configured only in the server environment.</p>
         <form onSubmit={handleSubmit} className="mt-8 grid gap-5">
           <label className="text-sm font-bold">Admin email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="field mt-2" autoComplete="username" required /></label>
-          <label className="text-sm font-bold">Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} className="field mt-2" autoComplete="current-password" required /></label>
+          <div>
+            <label htmlFor="admin-password" className="text-sm font-bold">Password</label>
+            <div className="relative mt-2">
+              <input id="admin-password" type={isPasswordVisible ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} className="field pr-12" autoComplete="current-password" required />
+              <button type="button" onClick={() => setIsPasswordVisible((visible) => !visible)} className="absolute inset-y-0 right-0 px-4 text-brand-gray hover:text-brand-yellow" aria-label={isPasswordVisible ? "Hide password" : "Show password"}>
+                {isPasswordVisible ? <EyeOff size={19} aria-hidden="true" /> : <Eye size={19} aria-hidden="true" />}
+              </button>
+            </div>
+          </div>
           {error && <p className="text-sm text-red-300" role="alert">{error}</p>}
           <button disabled={isLoading} className="rounded-full bg-brand-yellow px-6 py-3 font-bold text-brand-black disabled:opacity-60">{isLoading ? "Signing in…" : "Sign in"}</button>
         </form>
