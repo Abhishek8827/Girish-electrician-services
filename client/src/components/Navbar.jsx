@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Menu, X, Zap } from "lucide-react";
+import { businessConfig } from "../data/businessConfig";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,14 +26,17 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2 group cursor-pointer">
+        <a href="#top" className="flex items-center gap-2 group">
           <div className="bg-brand-yellow p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
             <Zap className="text-brand-black fill-brand-black" size={24} />
           </div>
           <span className="text-xl font-bold tracking-tighter text-brand-white">
-            GIRISH <span className="text-brand-yellow">ELECTRIC</span>
+            {businessConfig.shortName.split(" ")[0].toUpperCase()} {" "}
+            <span className="text-brand-yellow">
+              {businessConfig.shortName.split(" ").slice(1).join(" ").toUpperCase()}
+            </span>
           </span>
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
@@ -44,38 +49,58 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <button className="bg-brand-yellow text-brand-black px-5 py-2 rounded-full font-bold text-sm glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95">
+          <a
+            href="#request-service"
+            className="bg-brand-yellow text-brand-black px-5 py-2 rounded-full font-bold text-sm glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95"
+          >
             Request Service
-          </button>
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
+          type="button"
           className="md:hidden text-brand-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-brand-dark border-t border-brand-black p-6 flex flex-col gap-4 md:hidden animate-in fade-in slide-in-from-top-5">
-          {["Services", "Process", "About", "Safety"].map((item) => (
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-navigation"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 w-full bg-brand-dark border-t border-brand-black p-6 flex flex-col gap-4 md:hidden"
+          >
+            {["Services", "Process", "About", "Safety"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-lg font-medium text-brand-gray hover:text-brand-yellow"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-lg font-medium text-brand-gray hover:text-brand-yellow"
+              href="#request-service"
+              className="bg-brand-yellow text-brand-black px-5 py-3 rounded-xl font-bold glow-yellow"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item}
+              Request Service
             </a>
-          ))}
-          <button className="bg-brand-yellow text-brand-black px-5 py-3 rounded-xl font-bold glow-yellow">
-            Request Service
-          </button>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

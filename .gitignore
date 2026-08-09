@@ -1,2 +1,5 @@
 node_modules/
-.envcode "C:\Users\CB\AppData\Roaming\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json"
+.env
+.env.*
+!.env.example
+dist/

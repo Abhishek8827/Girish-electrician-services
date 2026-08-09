@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("VoltMaster API is running...");
+  res.send("Girish Electrician Services API is running...");
 });
 
 const PORT = process.env.PORT || 5000;
