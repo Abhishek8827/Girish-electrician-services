@@ -1,4 +1,4 @@
 node_modules/
 .env
-altas-credential.env
+atlas-credentials.env
 uploads/
