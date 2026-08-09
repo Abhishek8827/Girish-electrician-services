@@ -1,4 +1,5 @@
 import AboutSafetySection from "../components/AboutSafetySection";
+import ElectricalPanelSection from "../components/ElectricalPanelSection";
 import FaqSection from "../components/FaqSection";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
@@ -17,6 +18,7 @@ function HomePage() {
       <main id="main-content">
         <Hero />
         <ServicesSection />
+        <ElectricalPanelSection />
         <ProcessSection />
         <AboutSafetySection />
         <FaqSection />

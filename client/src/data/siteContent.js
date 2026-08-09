@@ -99,3 +99,48 @@ export const faqs = [
       "The next phase adds the full service-request form, including contact details, preferred timing, property type, and an optional image upload.",
   },
 ];
+
+export const panelComponents = [
+  {
+    id: "main-breaker",
+    label: "Main breaker",
+    purpose: "The main breaker is the primary point for isolating the panel's electrical supply during professional service or an emergency response.",
+    professionalNote: "Only a qualified professional should assess a panel, its supply, and any isolation procedure.",
+  },
+  {
+    id: "rccb",
+    label: "RCCB",
+    purpose: "An RCCB is a protective device designed to respond to certain earth-leakage faults and improve electrical safety.",
+    professionalNote: "Repeated tripping needs professional fault assessment; do not bypass protective devices.",
+  },
+  {
+    id: "mcb",
+    label: "MCB circuits",
+    purpose: "MCBs protect individual circuits by interrupting power when the circuit experiences an abnormal electrical condition.",
+    professionalNote: "The cause of a tripped breaker should be assessed before it is repeatedly reset.",
+  },
+  {
+    id: "busbar",
+    label: "Busbar",
+    purpose: "A busbar distributes electrical supply within the panel to the protective devices that serve different circuits.",
+    professionalNote: "Busbar work involves panel internals and must only be carried out by qualified professionals.",
+  },
+  {
+    id: "neutral-bar",
+    label: "Neutral bar",
+    purpose: "The neutral bar provides an organised connection point for neutral conductors in the distribution system.",
+    professionalNote: "Loose or damaged connections can be hazardous and need professional inspection.",
+  },
+  {
+    id: "earth-connection",
+    label: "Earth connection",
+    purpose: "The earth connection forms part of the system that helps reduce risk from electrical faults by providing a protective path.",
+    professionalNote: "Never disconnect or alter an earth connection yourself; request a qualified assessment instead.",
+  },
+  {
+    id: "distribution-circuits",
+    label: "Distribution circuits",
+    purpose: "Distribution circuits carry protected power from the panel to areas such as lighting, sockets, and dedicated equipment.",
+    professionalNote: "Circuit identification and alterations should be documented and completed professionally.",
+  },
+];
