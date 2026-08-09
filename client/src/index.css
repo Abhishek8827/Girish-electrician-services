@@ -13,6 +13,12 @@
 }
 
 @layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     @apply bg-brand-black text-brand-white antialiased;
     font-family: "Inter", system-ui, sans-serif;
@@ -27,4 +33,23 @@
 
 @utility text-glow-yellow {
   text-shadow: 0 0 10px rgba(250, 204, 21, 0.6);
+}
+
+@utility field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: rgba(26, 26, 26, 0.9);
+  padding: 0.75rem 1rem;
+  color: #fcfcfc;
+  outline: none;
+}
+
+@utility field-focus {
+  border-color: #facc15;
+}
+
+.field:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.18);
 }

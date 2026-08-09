@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import ServicesSection from "./components/ServicesSection";
+import ProcessSection from "./components/ProcessSection";
+import AboutSafetySection from "./components/AboutSafetySection";
+import FaqSection from "./components/FaqSection";
+import RequestCta from "./components/RequestCta";
+import Footer from "./components/Footer";
 import { businessConfig } from "./data/businessConfig";
 
 function App() {
@@ -22,8 +28,13 @@ function App() {
       <Navbar />
       <main id="main-content">
         <Hero />
-        {/* Future sections will be added here */}
+        <ServicesSection />
+        <ProcessSection />
+        <AboutSafetySection />
+        <FaqSection />
+        <RequestCta />
       </main>
+      <Footer />
     </div>
   );
 }

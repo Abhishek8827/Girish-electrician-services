@@ -43,12 +43,12 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="flex items-center justify-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-lg glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95">
+            <a href="#request-service" className="flex items-center justify-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-lg glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95">
               Request a Service <ArrowRight size={20} />
-            </button>
-            <button className="px-8 py-4 rounded-full font-bold text-lg border border-brand-gray/30 text-brand-white hover:bg-brand-dark transition-all">
+            </a>
+            <a href="#services" className="px-8 py-4 rounded-full font-bold text-lg border border-brand-gray/30 text-brand-white hover:bg-brand-dark transition-all text-center">
               Explore Services
-            </button>
+            </a>
           </div>
         </motion.div>
 
