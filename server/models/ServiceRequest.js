@@ -24,6 +24,16 @@ const serviceRequestSchema = new mongoose.Schema(
       enum: ["Pending", "Contacted", "Scheduled", "Completed", "Cancelled"],
       default: "Pending",
     },
+    statusHistory: [
+      {
+        status: {
+          type: String,
+          enum: ["Pending", "Contacted", "Scheduled", "Completed", "Cancelled"],
+          required: true,
+        },
+        changedAt: { type: Date, required: true, default: Date.now },
+      },
+    ],
   },
   { timestamps: true },
 );

@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const express = require("express");
+const { rateLimit } = require("express-rate-limit");
 const multer = require("multer");
 const Counter = require("../models/Counter");
 const ServiceRequest = require("../models/ServiceRequest");
@@ -9,6 +10,14 @@ const ServiceRequest = require("../models/ServiceRequest");
 const router = express.Router();
 const uploadsDirectory = path.join(__dirname, "..", "uploads");
 const allowedImageTypes = new Set(["image/jpeg", "image/png", "image/webp"]);
+
+const trackingLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: { success: false, message: "Too many tracking attempts. Try again in 15 minutes." },
+});
 
 fs.mkdirSync(uploadsDirectory, { recursive: true });
 
@@ -48,6 +57,10 @@ function getLocalDate() {
   const now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   return now.toISOString().slice(0, 10);
+}
+
+function normalizePhone(value) {
+  return String(value || "").replace(/[^0-9+]/g, "");
 }
 
 function getValidationErrors(data) {
@@ -107,6 +120,7 @@ router.post("/", upload.single("image"), async (req, res, next) => {
     const request = await ServiceRequest.create({
       ...data,
       requestId,
+      statusHistory: [{ status: "Pending", changedAt: new Date() }],
       image: req.file
         ? {
             url: `/uploads/${req.file.filename}`,
@@ -124,6 +138,43 @@ router.post("/", upload.single("image"), async (req, res, next) => {
     });
   } catch (error) {
     removeUploadedFile(req.file);
+    return next(error);
+  }
+});
+
+router.post("/track", trackingLimiter, async (req, res, next) => {
+  try {
+    const requestId = cleanText(req.body.requestId).toUpperCase();
+    const contact = cleanText(req.body.contact);
+    if (!requestId || !contact) {
+      return res.status(422).json({ success: false, message: "Enter your request ID and the email or phone number used in the request." });
+    }
+
+    const request = await ServiceRequest.findOne({ requestId }).lean();
+    const contactMatches = request && (
+      request.email === contact.toLowerCase() || normalizePhone(request.phone) === normalizePhone(contact)
+    );
+    if (!contactMatches) {
+      return res.status(404).json({ success: false, message: "We could not find a request matching those details." });
+    }
+
+    const statusHistory = request.statusHistory?.length
+      ? request.statusHistory
+      : [{ status: request.status, changedAt: request.createdAt }];
+
+    return res.json({
+      success: true,
+      request: {
+        requestId: request.requestId,
+        serviceType: request.serviceType,
+        preferredDate: request.preferredDate,
+        preferredTime: request.preferredTime,
+        status: request.status,
+        statusHistory,
+        createdAt: request.createdAt,
+      },
+    });
+  } catch (error) {
     return next(error);
   }
 });
