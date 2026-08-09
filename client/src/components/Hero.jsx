@@ -43,10 +43,16 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#request-service" className="flex items-center justify-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-lg glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95">
+            <a
+              href="#request-service"
+              className="flex items-center justify-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-lg glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95"
+            >
               Request a Service <ArrowRight size={20} />
             </a>
-            <a href="#services" className="px-8 py-4 rounded-full font-bold text-lg border border-brand-gray/30 text-brand-white hover:bg-brand-dark transition-all text-center">
+            <a
+              href="#services"
+              className="px-8 py-4 rounded-full font-bold text-lg border border-brand-gray/30 text-brand-white hover:bg-brand-dark transition-all text-center"
+            >
               Explore Services
             </a>
           </div>
@@ -61,7 +67,7 @@ const Hero = () => {
         >
           <div className="relative w-full max-w-md aspect-square bg-brand-dark rounded-3xl border-2 border-brand-yellow/20 overflow-hidden shadow-2xl">
             <img
-              src="/electrician.png"
+              src={`${import.meta.env.BASE_URL}electrician.png`}
               alt="Professional electrician standing beside an electrical distribution panel"
               className="h-full w-full object-cover"
               decoding="async"
