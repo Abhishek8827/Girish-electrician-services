@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { faqs } from "../data/siteContent";
 import SectionHeading from "./SectionHeading";
@@ -7,7 +8,14 @@ function FaqSection() {
   const [openQuestion, setOpenQuestion] = useState(0);
 
   return (
-    <section className="bg-brand-black py-20 sm:py-28" aria-labelledby="faq-title">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-brand-black py-20 sm:py-28"
+      aria-labelledby="faq-title"
+    >
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <SectionHeading
           eyebrow="Answers first"
@@ -36,7 +44,10 @@ function FaqSection() {
                   />
                 </button>
                 {isOpen && (
-                  <p id={panelId} className="max-w-2xl pb-6 leading-7 text-brand-gray">
+                  <p
+                    id={panelId}
+                    className="max-w-2xl pb-6 leading-7 text-brand-gray"
+                  >
                     {faq.answer}
                   </p>
                 )}
@@ -45,7 +56,7 @@ function FaqSection() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

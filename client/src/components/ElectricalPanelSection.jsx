@@ -21,8 +21,12 @@ function ElectricalPanelSection() {
   );
 
   return (
-    <section
+    <motion.section
       id="panel-demo" // Note: The user mentioned a navbar overlap issue. The `scroll-mt-24` class is the standard way to handle this for sticky navbars.
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className="scroll-mt-24 bg-brand-black py-20 sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
@@ -232,7 +236,7 @@ function ElectricalPanelSection() {
           </motion.aside>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

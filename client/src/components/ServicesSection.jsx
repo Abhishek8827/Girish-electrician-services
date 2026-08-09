@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import {
   ArrowRight,
   Building2,
@@ -89,6 +89,22 @@ function handleRequestService(serviceType) {
 
 function ServiceTabPanel({ category, scene, panelId, tabId }) {
   const SceneIcon = scene.icon;
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useTransform(mouseY, [-150, 150], [8, -8]);
+  const rotateY = useTransform(mouseX, [-200, 200], [-8, 8]);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left - width / 2);
+    mouseY.set(clientY - top - height / 2);
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <div
@@ -203,8 +219,12 @@ function ServicesSection() {
   const id = useId();
 
   return (
-    <section
+    <motion.section
       id="services"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
@@ -250,7 +270,7 @@ function ServicesSection() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
