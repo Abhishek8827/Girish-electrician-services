@@ -34,7 +34,10 @@ function AdminRequestsPage() {
     }
   }, [navigate, statusFilter, token]);
 
-  useEffect(() => { loadRequests(); }, [loadRequests]);
+  useEffect(() => {
+    const refreshTimer = window.setTimeout(loadRequests, 0);
+    return () => window.clearTimeout(refreshTimer);
+  }, [loadRequests]);
 
   async function changeStatus(requestId, status) {
     setUpdatingId(requestId);
