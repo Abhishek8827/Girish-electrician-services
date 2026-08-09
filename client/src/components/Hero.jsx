@@ -59,15 +59,22 @@ const Hero = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative flex justify-center"
         >
-          {/* This is the container for the AI Image */}
           <div className="relative w-full max-w-md aspect-square bg-brand-dark rounded-3xl border-2 border-brand-yellow/20 overflow-hidden shadow-2xl">
-            {/* Placeholder for the AI Image */}
-            <div className="absolute inset-0 flex items-center justify-center text-brand-gray text-center p-8 italic">
-              [ AI Visual: Professional Electrician with tools, cinematic
-              lighting, standing in front of a modern electrical panel ]
-            </div>
-            {/* Animated Glow ring behind image */}
-            <div className="absolute inset-0 border-4 border-brand-yellow opacity-20 animate-pulse rounded-3xl"></div>
+            <img
+              src="/electrician.png"
+              alt="Professional electrician standing beside an electrical distribution panel"
+              className="h-full w-full object-cover"
+              decoding="async"
+              fetchPriority="high"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-transparent"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 rounded-3xl border-4 border-brand-yellow/20 animate-pulse"
+            />
           </div>
         </motion.div>
       </div>
