@@ -16,7 +16,10 @@ const trackingLimiter = rateLimit({
   limit: 20,
   standardHeaders: "draft-8",
   legacyHeaders: false,
-  message: { success: false, message: "Too many tracking attempts. Try again in 15 minutes." },
+  message: {
+    success: false,
+    message: "Too many tracking attempts. Try again in 15 minutes.",
+  },
 });
 
 fs.mkdirSync(uploadsDirectory, { recursive: true });
@@ -70,16 +73,23 @@ function getValidationErrors(data) {
   const today = getLocalDate();
 
   if (data.name.length < 2) errors.name = "Enter your full name.";
-  if (!phonePattern.test(data.phone)) errors.phone = "Enter a valid phone number.";
-  if (!emailPattern.test(data.email)) errors.email = "Enter a valid email address.";
+  if (!phonePattern.test(data.phone))
+    errors.phone = "Enter a valid phone number.";
+  if (!emailPattern.test(data.email))
+    errors.email = "Enter a valid email address.";
   if (!data.serviceType) errors.serviceType = "Choose a service type.";
   if (!data.propertyType) errors.propertyType = "Choose a property type.";
   if (data.address.length < 5) errors.address = "Enter the service address.";
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(data.preferredDate) || data.preferredDate < today) {
+  if (
+    !/^\d{4}-\d{2}-\d{2}$/.test(data.preferredDate) ||
+    data.preferredDate < today
+  ) {
     errors.preferredDate = "Choose today or a future date.";
   }
-  if (!/^\d{2}:\d{2}$/.test(data.preferredTime)) errors.preferredTime = "Choose a preferred time.";
-  if (data.description.length < 10) errors.description = "Describe the issue in at least 10 characters.";
+  if (!/^\d{2}:\d{2}$/.test(data.preferredTime))
+    errors.preferredTime = "Choose a preferred time.";
+  if (data.description.length < 10)
+    errors.description = "Describe the issue in at least 10 characters.";
 
   return errors;
 }
@@ -112,7 +122,11 @@ router.post("/", upload.single("image"), async (req, res, next) => {
 
   if (Object.keys(errors).length > 0) {
     removeUploadedFile(req.file);
-    return res.status(422).json({ success: false, message: "Please correct the highlighted fields.", errors });
+    return res.status(422).json({
+      success: false,
+      message: "Please correct the highlighted fields.",
+      errors,
+    });
   }
 
   try {
@@ -147,15 +161,25 @@ router.post("/track", trackingLimiter, async (req, res, next) => {
     const requestId = cleanText(req.body.requestId).toUpperCase();
     const contact = cleanText(req.body.contact);
     if (!requestId || !contact) {
-      return res.status(422).json({ success: false, message: "Enter your request ID and the email or phone number used in the request." });
+      return res.status(422).json({
+        success: false,
+        message:
+          "Enter your request ID and the email or phone number used in the request.",
+      });
     }
 
-    const request = await ServiceRequest.findOne({ requestId }).lean();
-    const contactMatches = request && (
-      request.email === contact.toLowerCase() || normalizePhone(request.phone) === normalizePhone(contact)
-    );
+    const request = await ServiceRequest.findOne({ requestId })
+      .populate("assignedElectrician", "name phone")
+      .lean();
+    const contactMatches =
+      request &&
+      (request.email === contact.toLowerCase() ||
+        normalizePhone(request.phone) === normalizePhone(contact));
     if (!contactMatches) {
-      return res.status(404).json({ success: false, message: "We could not find a request matching those details." });
+      return res.status(404).json({
+        success: false,
+        message: "We could not find a request matching those details.",
+      });
     }
 
     const statusHistory = request.statusHistory?.length
@@ -167,11 +191,13 @@ router.post("/track", trackingLimiter, async (req, res, next) => {
       request: {
         requestId: request.requestId,
         serviceType: request.serviceType,
+        propertyType: request.propertyType,
         preferredDate: request.preferredDate,
         preferredTime: request.preferredTime,
         status: request.status,
         statusHistory,
         createdAt: request.createdAt,
+        assignedElectrician: request.assignedElectrician,
       },
     });
   } catch (error) {

@@ -82,7 +82,7 @@ function TrackRequestPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 font-bold text-brand-black disabled:opacity-60 sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-brand-yellow px-6 py-3 font-bold text-brand-black disabled:opacity-60 sm:w-auto"
           >
             {isLoading ? (
               <CgSpinner size={20} className="animate-spin" />
@@ -109,11 +109,26 @@ function TrackRequestPage() {
                 {request.status}
               </span>
             </div>
-            <p className="mt-4 text-sm text-brand-gray">
-              Preferred visit: {request.preferredDate} at{" "}
-              {request.preferredTime}
-            </p>
-            <ol className="mt-8 space-y-5 border-l border-brand-yellow/40 pl-6">
+            <div className="mt-6 grid gap-4 border-t border-white/10 pt-6 text-sm sm:grid-cols-2">
+              <p>
+                <span className="block font-bold text-brand-gray">
+                  Preferred Visit
+                </span>
+                <span className="text-brand-white">
+                  {request.preferredDate} at {request.preferredTime}
+                </span>
+              </p>
+              <p>
+                <span className="block font-bold text-brand-gray">
+                  Property Type
+                </span>
+                <span className="text-brand-white">{request.propertyType}</span>
+              </p>
+            </div>
+            <div className="mt-6 border-t border-white/10 pt-6">
+              <h3 className="text-lg font-bold">Status History</h3>
+            </div>
+            <ol className="mt-4 space-y-6 border-l-2 border-brand-yellow/40 pl-6">
               {request.statusHistory.map((item) => (
                 <li
                   key={`${item.status}-${item.changedAt}`}
@@ -121,11 +136,23 @@ function TrackRequestPage() {
                 >
                   <MdCheckCircle
                     size={18}
-                    className="absolute -left-[2.05rem] top-0 rounded-full bg-brand-dark text-brand-yellow"
+                    className="absolute -left-[0.6rem] top-1 rounded-full bg-brand-dark text-brand-yellow"
                     aria-hidden="true"
                   />
-                  <p className="font-bold">{item.status}</p>
-                  <p className="mt-1 text-sm text-brand-gray">
+                  <p className="font-bold text-brand-white">{item.status}</p>
+                  {item.status === "Scheduled" && (
+                    <div className="mt-2 rounded-lg border border-white/10 bg-brand-black/50 p-3 text-sm">
+                      <p>
+                        <span className="font-bold">Electrician Assigned:</span>{" "}
+                        Girish
+                      </p>
+                      <p>
+                        <span className="font-bold">Contact:</span>{" "}
+                        {request.assignedContact}
+                      </p>
+                    </div>
+                  )}
+                  <p className="mt-2 text-sm text-brand-gray">
                     {new Date(item.changedAt).toLocaleString()}
                   </p>
                 </li>
@@ -133,7 +160,6 @@ function TrackRequestPage() {
             </ol>
           </section>
         )}
-
         <p className="mt-8 flex items-start gap-2 text-sm leading-6 text-brand-gray">
           <MdShield
             size={18}

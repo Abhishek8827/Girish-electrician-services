@@ -304,7 +304,7 @@ function RequestCta({ initialServiceType }) {
                     id="preferredDate"
                     name="preferredDate"
                     type="date"
-                    min={getToday()}
+                    min={getToday()} // Explicitly set min date to prevent past date selection
                     value={form.preferredDate}
                     onChange={handleChange}
                     className="field"
