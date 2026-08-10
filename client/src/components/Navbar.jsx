@@ -1,9 +1,16 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { MdClose, MdFlashOn, MdMenu } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { businessConfig } from "../data/businessConfig";
 import ScrollToTopButton from "./ScrollToTopButton";
+
+const navItems = [
+  { name: "Services", href: "#services" },
+  { name: "Process", href: "#process" },
+  { name: "About", href: "#meet-girish" }, // Points to the "Meet Girish" section
+  { name: "Safety", href: "#safety" }, // Points to the "Safety notice" section
+];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,7 +38,7 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#top" className="flex items-center gap-2 group">
             <div className="bg-brand-yellow p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
-              <Zap className="text-brand-black fill-brand-black" size={24} />
+              <MdFlashOn className="text-brand-black" size={24} />
             </div>
             <span className="text-xl font-bold tracking-tighter text-brand-white">
               {businessConfig.shortName.split(" ")[0].toUpperCase()}{" "}
@@ -46,14 +53,14 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-5">
-            {["Services", "Process", "About", "Safety"].map((item) => (
+          <div className="hidden items-center gap-5 md:flex">
+            {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.name}
+                href={item.href}
                 className="text-sm font-medium text-brand-gray hover:text-brand-yellow transition-colors"
               >
-                {item}
+                {item.name}
               </a>
             ))}
             <Link
@@ -89,7 +96,7 @@ const Navbar = () => {
                 : "Open navigation menu"
             }
           >
-            {isMobileMenuOpen ? <X /> : <Menu />}
+            {isMobileMenuOpen ? <MdClose size={28} /> : <MdMenu size={28} />}
           </button>
         </div>
 
@@ -104,14 +111,14 @@ const Navbar = () => {
               transition={{ duration: 0.2 }}
               className="absolute top-full left-0 w-full bg-brand-dark border-t border-brand-black p-6 flex flex-col gap-4 md:hidden"
             >
-              {["Services", "Process", "About", "Safety"].map((item) => (
+              {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
                   className="text-lg font-medium text-brand-gray hover:text-brand-yellow"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
               <Link

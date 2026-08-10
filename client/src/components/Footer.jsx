@@ -1,5 +1,11 @@
-import { Mail, MapPin, Phone, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  MdFlashOn,
+  MdLocationOn,
+  MdMailOutline,
+  MdPhone,
+} from "react-icons/md";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { businessConfig } from "../data/businessConfig";
 
 function Footer() {
@@ -14,7 +20,7 @@ function Footer() {
               className="flex items-center gap-2 font-bold text-brand-white"
             >
               <span className="rounded-md bg-brand-yellow p-1.5 text-brand-black">
-                <Zap size={17} fill="currentColor" />
+                <MdFlashOn size={17} /> {/* Using MdFlashOn for the logo */}
               </span>
               {businessConfig.name}
             </a>
@@ -48,7 +54,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="#about"
+                  href="#meet-girish"
                   className="hover:text-brand-white transition-colors"
                 >
                   About Us
@@ -72,27 +78,30 @@ function Footer() {
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-center gap-2.5">
-                <Phone size={16} className="shrink-0 text-brand-yellow" />
+                <MdPhone size={16} className="shrink-0 text-brand-yellow" />
                 <a
                   href={`tel:${businessConfig.phone}`}
-                  className="hover:text-brand-white transition-colors"
+                  className="font-bold text-base text-brand-white hover:text-brand-yellow transition-colors"
                 >
                   {businessConfig.phone}
                 </a>
               </li>
               {businessConfig.emergencyContact && (
                 <li className="flex items-center gap-2.5">
-                  <Phone size={16} className="shrink-0 text-red-400" />
+                  <MdPhone size={16} className="shrink-0 text-red-400" />
                   <a
                     href={`tel:${businessConfig.emergencyContact}`}
-                    className="hover:text-red-300 transition-colors"
+                    className="font-bold text-base text-red-300 hover:text-red-200 transition-colors"
                   >
                     Emergency: {businessConfig.emergencyContact}
                   </a>
                 </li>
               )}
               <li className="flex items-center gap-2.5">
-                <Mail size={16} className="shrink-0 text-brand-yellow" />
+                <MdMailOutline
+                  size={16}
+                  className="shrink-0 text-brand-yellow"
+                />
                 <a
                   href={`mailto:${businessConfig.email}`}
                   className="hover:text-brand-white transition-colors"
@@ -101,8 +110,60 @@ function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <MapPin size={16} className="shrink-0 text-brand-yellow" />
+                <MdLocationOn
+                  size={16}
+                  className="shrink-0 text-brand-yellow"
+                />
                 <span>{businessConfig.location}</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
+              Follow Us
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li>
+                <a
+                  href="https://instagram.com/REPLACE_WITH_YOUR_PROFILE" // Replace with your actual Instagram URL
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
+                >
+                  <FaInstagram
+                    size={16}
+                    className="shrink-0 text-brand-yellow"
+                  />
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`https://wa.me/${businessConfig.phone}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
+                >
+                  <FaWhatsapp
+                    size={16}
+                    className="shrink-0 text-brand-yellow"
+                  />
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${businessConfig.email}`}
+                  className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
+                >
+                  <MdMailOutline
+                    size={16}
+                    className="shrink-0 text-brand-yellow"
+                  />
+                  Email
+                </a>
               </li>
             </ul>
           </div>
