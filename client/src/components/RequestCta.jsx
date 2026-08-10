@@ -1,6 +1,11 @@
-import { AlertCircle, CheckCircle2, LoaderCircle, Upload } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CgSpinner } from "react-icons/cg";
+import {
+  MdCheckCircleOutline,
+  MdErrorOutline,
+  MdFileUpload,
+} from "react-icons/md";
 import { submitServiceRequest } from "../api/serviceRequests";
 import SectionHeading from "./SectionHeading";
 
@@ -46,7 +51,7 @@ function getToday() {
   return now.toISOString().slice(0, 10);
 }
 
-function RequestCta() {
+function RequestCta({ initialServiceType }) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -140,6 +145,24 @@ function RequestCta() {
     setErrors({});
   }
 
+  useEffect(() => {
+    if (initialServiceType) {
+      // Find the option that most closely matches the category title
+      const matchingOption = serviceTypes.find((option) =>
+        initialServiceType
+          .toLowerCase()
+          .includes(option.split(" ")[0].toLowerCase()),
+      );
+
+      setForm((current) => ({
+        ...current,
+        serviceType: matchingOption || initialServiceType,
+      }));
+      // Focus the element to bring it into view for the user
+      document.getElementById("serviceType")?.focus();
+    }
+  }, [initialServiceType]);
+
   return (
     <motion.section
       id="request-service"
@@ -162,7 +185,7 @@ function RequestCta() {
               className="mt-10 max-w-2xl rounded-2xl border border-brand-yellow/40 bg-brand-yellow/10 p-7"
               role="status"
             >
-              <CheckCircle2
+              <MdCheckCircleOutline
                 size={34}
                 className="text-brand-yellow"
                 aria-hidden="true"
@@ -194,7 +217,7 @@ function RequestCta() {
                   className="flex gap-3 rounded-xl border border-red-400/40 bg-red-400/10 p-4 text-sm leading-6 text-red-100"
                   role="alert"
                 >
-                  <AlertCircle
+                  <MdErrorOutline
                     size={20}
                     className="mt-0.5 shrink-0"
                     aria-hidden="true"
@@ -301,7 +324,7 @@ function RequestCta() {
                     htmlFor="image"
                     className="field flex cursor-pointer items-center gap-3"
                   >
-                    <Upload
+                    <MdFileUpload
                       size={18}
                       className="text-brand-yellow"
                       aria-hidden="true"
@@ -372,7 +395,7 @@ function RequestCta() {
               >
                 {isSubmitting ? (
                   <>
-                    <LoaderCircle
+                    <CgSpinner
                       size={20}
                       className="animate-spin"
                       aria-hidden="true"

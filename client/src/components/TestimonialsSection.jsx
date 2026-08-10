@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Quote } from "lucide-react";
 import { testimonials } from "../data/siteContent";
+import { FaQuoteLeft } from "react-icons/fa";
 import SectionHeading from "./SectionHeading";
 
 function TestimonialCard({ testimonial, index }) {
@@ -37,16 +37,28 @@ function TestimonialCard({ testimonial, index }) {
         className="flex-grow text-lg leading-8 text-brand-gray"
         style={{ transform: "translateZ(30px)" }}
       >
-        <Quote className="mb-4 h-8 w-8 text-brand-yellow" aria-hidden="true" />
+        <FaQuoteLeft
+          className="mb-4 h-8 w-8 text-brand-yellow"
+          aria-hidden="true"
+        />
         <p>“{testimonial.quote}”</p>
       </blockquote>
       <figcaption
         className="mt-8 border-t border-white/10 pt-6"
         style={{ transform: "translateZ(20px)" }}
       >
-        <div className="font-bold text-brand-white">{testimonial.name}</div>
-        <div className="mt-1 text-sm text-brand-yellow">
-          {testimonial.service}
+        <div className="flex items-center gap-4">
+          <img
+            src={`${import.meta.env.BASE_URL}${testimonial.image}`}
+            alt={testimonial.name}
+            className="h-12 w-12 rounded-full object-cover bg-brand-dark"
+          />
+          <div>
+            <div className="font-bold text-brand-white">{testimonial.name}</div>
+            <div className="mt-1 text-sm text-brand-yellow">
+              {testimonial.service}
+            </div>
+          </div>
         </div>
       </figcaption>
     </motion.figure>
@@ -64,6 +76,15 @@ function TestimonialsSection() {
       className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
+        {/* Subtle Background Pattern */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-0 opacity-5"
+          style={{
+            backgroundImage: "radial-gradient(#facc15 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
+        ></div>
         <SectionHeading
           eyebrow="Client feedback"
           title="Trusted by homes and businesses."

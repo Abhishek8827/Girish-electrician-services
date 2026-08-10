@@ -1,29 +1,34 @@
-import { BadgeCheck, Eye, ShieldAlert, Wrench } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { businessConfig } from "../data/businessConfig";
+import {
+  MdBuild,
+  MdOutlineShield,
+  MdOutlineVisibility,
+  MdVerifiedUser,
+} from "react-icons/md";
 
 const principles = [
   {
-    icon: ShieldAlert,
+    icon: MdOutlineShield,
     title: "Safety-led work",
     description:
       "Electrical risks are treated seriously from assessment through handover.",
   },
   {
-    icon: Eye,
+    icon: MdOutlineVisibility,
     title: "Clear communication",
     description:
       "The scope and next step are explained in straightforward language.",
   },
   {
-    icon: Wrench,
+    icon: MdBuild,
     title: "Technical care",
     description:
       "Installation, repair, and maintenance work is approached methodically.",
   },
   {
-    icon: BadgeCheck,
+    icon: MdVerifiedUser,
     title: "Respect for your space",
     description:
       "Whether at home or work, the aim is a tidy, considered service visit.",
@@ -129,7 +134,7 @@ function AboutSafetySection() {
         className="scroll-mt-24 bg-brand-yellow py-16 sm:py-20"
       >
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[auto_1fr_auto] lg:items-center">
-          <ShieldAlert
+          <MdOutlineShield
             size={52}
             className="text-brand-black"
             aria-hidden="true"

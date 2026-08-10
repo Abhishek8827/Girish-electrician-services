@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdClose, MdFlashOn, MdMenu } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { businessConfig } from "../data/businessConfig";
@@ -8,27 +8,45 @@ import ScrollToTopButton from "./ScrollToTopButton";
 const navItems = [
   { name: "Services", href: "#services" },
   { name: "Process", href: "#process" },
-  { name: "About", href: "#meet-girish" }, // Points to the "Meet Girish" section
-  { name: "Safety", href: "#safety" }, // Points to the "Safety notice" section
+  { name: "About", href: "#meet-girish" },
+  { name: "Safety", href: "#safety" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastY = useRef(0);
 
-  // Add scroll listener to change navbar background on scroll
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 20);
+
+      // Don't hide if mobile menu is open or if near the top of the page
+      if (isMobileMenuOpen || currentY < 200) {
+        setIsHidden(false);
+      } else if (currentY > lastY.current) {
+        // Scrolling down
+        setIsHidden(true);
+      } else {
+        // Scrolling up
+        setIsHidden(false);
+      }
+      lastY.current = currentY;
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   return (
     <>
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      <motion.nav
+        variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
+        animate={isHidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
           isScrolled
             ? "bg-brand-black/90 backdrop-blur-md py-3 shadow-lg"
             : "bg-transparent py-5"
@@ -145,7 +163,7 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
+      </motion.nav>
       <ScrollToTopButton />
     </>
   );

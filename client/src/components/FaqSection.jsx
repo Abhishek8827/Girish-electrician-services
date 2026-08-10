@@ -1,6 +1,6 @@
-import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { MdExpandMore } from "react-icons/md";
 import { faqs } from "../data/siteContent";
 import SectionHeading from "./SectionHeading";
 
@@ -37,7 +37,7 @@ function FaqSection() {
                   onClick={() => setOpenQuestion(isOpen ? -1 : index)}
                 >
                   {faq.question}
-                  <ChevronDown
+                  <MdExpandMore
                     size={22}
                     aria-hidden="true"
                     className={`shrink-0 text-brand-yellow transition-transform ${isOpen ? "rotate-180" : ""}`}

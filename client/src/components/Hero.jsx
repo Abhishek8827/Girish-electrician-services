@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { MdArrowForward, MdShield } from "react-icons/md";
 
 const Hero = () => {
   return (
@@ -25,7 +25,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className="inline-flex items-center gap-2 bg-brand-dark border border-brand-yellow/30 px-3 py-1 rounded-full text-brand-yellow text-xs font-bold uppercase tracking-widest mb-6">
-            <ShieldCheck size={14} />
+            <MdShield size={14} />
             Certified Master Electricians
           </div>
 
@@ -43,12 +43,21 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a
+            <motion.a
               href="#request-service"
               className="flex items-center justify-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-lg glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95"
+              animate={{
+                scale: [1, 1.03, 1],
+              }}
+              transition={{
+                duration: 2,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatDelay: 1,
+              }}
             >
-              Request a Service <ArrowRight size={20} />
-            </a>
+              Request a Service <MdArrowForward size={20} />
+            </motion.a>
             <a
               href="#services"
               className="px-8 py-4 rounded-full font-bold text-lg border border-brand-gray/30 text-brand-white hover:bg-brand-dark transition-all text-center"

@@ -292,17 +292,20 @@ export const testimonials = [
       "The team was incredibly professional and tidy. They fixed a complex wiring issue in our old house that others couldn't diagnose. Highly recommended for their expertise and clear communication.",
     name: "Priya Sharma",
     service: "Residential Fault Finding",
+    image: "/testimonials/priya-sharma.png", // Add image to public/testimonials/
   },
   {
     quote:
       "Fast, efficient, and very safety-conscious. They upgraded the entire lighting system in our office over a weekend with minimal disruption. The result is fantastic.",
     name: "Amit Singh",
     service: "Commercial Lighting Upgrade",
+    image: "/testimonials/amit-singh.png", // Add image to public/testimonials/
   },
   {
     quote:
       "From the initial request to the final handover, the process was seamless. The electrician who visited was knowledgeable and explained everything clearly. I felt confident in their work.",
     name: "Rohan Desai",
     service: "Panel & MCB Service",
+    image: "/testimonials/rohan-desai.png", // Add image to public/testimonials/
   },
 ];

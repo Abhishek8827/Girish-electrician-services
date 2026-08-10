@@ -1,48 +1,48 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import {
-  ArrowRight,
-  Building2,
-  Check,
-  CircuitBoard,
-  HardHat,
-  House,
-  Lightbulb,
-  ShieldCheck,
-  Siren,
-  Wrench,
-} from "lucide-react";
 import { useId, useState } from "react";
+import {
+  MdArrowForward,
+  MdBuild,
+  MdBusiness,
+  MdCheck,
+  MdConstruction,
+  MdDeveloperBoard,
+  MdEmergency,
+  MdHouse,
+  MdLightbulbOutline,
+  MdShield,
+} from "react-icons/md";
 import { serviceCategories } from "../data/siteContent";
 import SectionHeading from "./SectionHeading";
 
 const sceneByCategory = {
   home: {
-    icon: House,
+    icon: MdHouse,
     label: "Residential environment",
     detail: "Rooms, fixtures, and protected home circuits",
   },
   office: {
-    icon: Building2,
+    icon: MdBusiness,
     label: "Workplace environment",
     detail: "Workstations, lighting zones, and structured power",
   },
   construction: {
-    icon: HardHat,
+    icon: MdConstruction,
     label: "Construction environment",
     detail: "Conduit routes, distribution planning, and new infrastructure",
   },
   panel: {
-    icon: CircuitBoard,
+    icon: MdDeveloperBoard,
     label: "Panel environment",
     detail: "Distribution circuits, breakers, and professional assessment",
   },
   emergency: {
-    icon: Siren,
+    icon: MdEmergency,
     label: "Fault-response environment",
     detail: "A clear route from reported fault to safe assessment",
   },
   lighting: {
-    icon: Lightbulb,
+    icon: MdLightbulbOutline,
     label: "Lighting environment",
     detail: "Purposeful fixtures, controls, and energy-conscious upgrades",
   },
@@ -68,26 +68,7 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
   );
 }
 
-function handleRequestService(serviceType) {
-  // Find the service type dropdown in the request form
-  const serviceTypeSelect = document.getElementById("serviceType");
-
-  if (serviceTypeSelect) {
-    // Find the option that most closely matches the category title
-    const matchingOption = Array.from(serviceTypeSelect.options).find(
-      (option) =>
-        serviceType
-          .toLowerCase()
-          .includes(option.text.split(" ")[0].toLowerCase()),
-    );
-
-    serviceTypeSelect.value = matchingOption
-      ? matchingOption.value
-      : serviceType;
-  }
-}
-
-function ServiceTabPanel({ category, scene, panelId, tabId }) {
+function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
   const SceneIcon = scene.icon;
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -120,7 +101,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId }) {
       <div className="relative grid gap-10 xl:grid-cols-[1fr_0.8fr] xl:items-center">
         <div>
           <div className="flex items-center gap-3 text-brand-yellow">
-            <CircuitBoard size={22} />
+            <MdDeveloperBoard size={22} />
             <span className="text-xs font-bold uppercase tracking-[0.2em]">
               {category.label}
             </span>
@@ -138,7 +119,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId }) {
                 key={service}
                 className="flex items-center gap-3 text-sm font-medium text-brand-white"
               >
-                <Check
+                <MdCheck
                   size={18}
                   className="shrink-0 text-brand-yellow"
                   aria-hidden="true"
@@ -150,11 +131,11 @@ function ServiceTabPanel({ category, scene, panelId, tabId }) {
 
           <a
             href="#request-service"
-            onClick={() => handleRequestService(category.title)}
+            onClick={() => onSelectService(category.title)}
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-base font-bold text-brand-black transition-transform hover:scale-[1.02] active:scale-95"
           >
             Request Service
-            <ArrowRight size={18} />
+            <MdArrowForward size={18} />
           </a>
         </div>
 
@@ -175,7 +156,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId }) {
               <span className="rounded-lg border border-brand-yellow/40 bg-brand-black/60 p-3 text-brand-yellow">
                 <SceneIcon size={27} aria-hidden="true" />
               </span>
-              <Wrench
+              <MdBuild
                 size={22}
                 className="text-brand-yellow/70"
                 aria-hidden="true"
@@ -201,7 +182,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId }) {
         </motion.div>
 
         <div className="xl:col-span-2 flex items-start gap-3 border-t border-white/10 pt-6 text-sm leading-6 text-brand-gray">
-          <ShieldCheck
+          <MdShield
             size={19}
             className="mt-0.5 shrink-0 text-brand-yellow"
             aria-hidden="true"
@@ -214,7 +195,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId }) {
   );
 }
 
-function ServicesSection() {
+function ServicesSection({ onSelectService }) {
   const [activeCategory, setActiveCategory] = useState(serviceCategories[0]);
   const id = useId();
 
@@ -265,6 +246,7 @@ function ServicesSection() {
                 scene={sceneByCategory[category.id]}
                 panelId={`${id}-panel-${index}`}
                 tabId={`${id}-tab-${index}`}
+                onSelectService={onSelectService}
               />
             ) : null;
           })}

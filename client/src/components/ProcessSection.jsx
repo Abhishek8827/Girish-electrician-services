@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 import { processSteps } from "../data/siteContent";
+import { MdArrowDownward } from "react-icons/md";
 import SectionHeading from "./SectionHeading";
 
 function ProcessSection() {
@@ -44,7 +44,7 @@ function ProcessSection() {
                 </p>
               </div>
               {index < processSteps.length - 1 && (
-                <ArrowDown
+                <MdArrowDownward
                   size={18}
                   aria-hidden="true"
                   className="absolute bottom-1 left-[3.25rem] text-brand-yellow sm:left-[7.45rem]"

@@ -91,7 +91,7 @@ function Footer() {
                   <MdPhone size={16} className="shrink-0 text-red-400" />
                   <a
                     href={`tel:${businessConfig.emergencyContact}`}
-                    className="font-bold text-base text-red-300 hover:text-red-200 transition-colors"
+                    className="text-red-300 hover:text-red-200 transition-colors"
                   >
                     Emergency: {businessConfig.emergencyContact}
                   </a>
