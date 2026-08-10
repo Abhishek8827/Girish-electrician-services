@@ -140,18 +140,26 @@ function TrackRequestPage() {
                     aria-hidden="true"
                   />
                   <p className="font-bold text-brand-white">{item.status}</p>
-                  {item.status === "Scheduled" && (
-                    <div className="mt-2 rounded-lg border border-white/10 bg-brand-black/50 p-3 text-sm">
-                      <p>
-                        <span className="font-bold">Electrician Assigned:</span>{" "}
-                        Girish
-                      </p>
-                      <p>
-                        <span className="font-bold">Contact:</span>{" "}
-                        {request.assignedContact}
-                      </p>
-                    </div>
-                  )}
+                  {item.status === "Scheduled" &&
+                    request.assignedElectrician && (
+                      <div className="mt-2 rounded-lg border border-white/10 bg-brand-black/50 p-3 text-sm">
+                        <p>
+                          <span className="font-bold">
+                            Electrician Assigned:
+                          </span>{" "}
+                          {request.assignedElectrician.name}
+                        </p>
+                        <p>
+                          <span className="font-bold">Contact:</span>{" "}
+                          <a
+                            href={`tel:${request.assignedElectrician.phone}`}
+                            className="text-brand-yellow hover:underline"
+                          >
+                            {request.assignedElectrician.phone}
+                          </a>
+                        </p>
+                      </div>
+                    )}
                   <p className="mt-2 text-sm text-brand-gray">
                     {new Date(item.changedAt).toLocaleString()}
                   </p>

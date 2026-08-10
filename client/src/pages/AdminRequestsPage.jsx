@@ -75,10 +75,15 @@ function AdminRequestsPage() {
     return () => window.clearTimeout(refreshTimer);
   }, [loadRequests]);
 
-  async function changeStatus(requestId, status) {
+  async function changeStatus(requestId, assignedElectrician, status) {
     setUpdatingId(requestId);
     try {
-      const response = await updateRequestStatus(token, requestId, status);
+      const response = await updateRequestStatus(
+        token,
+        requestId,
+        assignedElectrician,
+        status,
+      );
       setRequests((current) =>
         current.map((request) =>
           request._id === requestId ? response.request : request,
@@ -222,7 +227,11 @@ function AdminRequestsPage() {
                           }
                           disabled={updatingId === request._id}
                           onChange={(event) =>
-                            changeStatus(request._id, event.target.value)
+                            changeStatus(
+                              request._id,
+                              event.target.value,
+                              request.status,
+                            )
                           }
                           className="ml-2 rounded-lg border border-brand-yellow/50 bg-brand-black px-3 py-2 text-brand-white disabled:opacity-60"
                         >

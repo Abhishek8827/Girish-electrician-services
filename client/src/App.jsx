@@ -1,40 +1,27 @@
-import { useEffect } from "react";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
-
-import AdminLoginPage from "./pages/AdminLoginPage";
-import AdminRequestsPage from "./pages/AdminRequestsPage";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TrackRequestPage from "./pages/TrackRequestPage";
-
-import { businessConfig } from "./data/businessConfig";
+import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminRequestsPage from "./pages/AdminRequestsPage";
+import AdminElectriciansPage from "./pages/AdminElectriciansPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  useEffect(() => {
-    document.title = `${businessConfig.name} | Professional Electrical Services`;
-  }, []);
-
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-
-        <Route path="/track-request" element={<TrackRequestPage />} />
-
-        <Route path="/admin" element={<AdminLoginPage />} />
-
-        <Route path="/admin/requests" element={<ProtectedAdminPage />} />
-
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </HashRouter>
-  );
-}
-
-function ProtectedAdminPage() {
-  return localStorage.getItem("girish_admin_token") ? (
-    <AdminRequestsPage />
-  ) : (
-    <Navigate to="/admin" replace />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/track-request" element={<TrackRequestPage />} />
+      <Route path="/admin" element={<AdminLoginPage />} />
+      <Route
+        path="/admin/requests"
+        element={<ProtectedRoute element={<AdminRequestsPage />} />}
+      />
+      <Route
+        path="/admin/electricians"
+        element={<ProtectedRoute element={<AdminElectriciansPage />} />}
+      />
+      <Route path="*" element={<HomePage />} />
+    </Routes>
   );
 }
 
