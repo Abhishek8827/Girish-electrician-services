@@ -54,3 +54,11 @@ export async function addElectrician(token, payload) {
   );
   return response.data;
 }
+
+export async function deleteElectrician(token, id) {
+  const response = await apiClient.delete(
+    `/admin/electricians/${id}`,
+    authConfig(token),
+  );
+  return response.data;
+}

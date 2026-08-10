@@ -189,13 +189,42 @@ router.post("/electricians", requireAdmin, async (req, res, next) => {
     return res.status(201).json({ success: true, electrician });
   } catch (error) {
     if (error.code === 11000) {
-      return res
-        .status(409)
-        .json({
-          success: false,
-          message: "An electrician with that phone number already exists.",
-        });
+      return res.status(409).json({
+        success: false,
+        message: "An electrician with that phone number already exists.",
+      });
     }
+    return next(error);
+  }
+});
+
+router.delete("/electricians/:id", requireAdmin, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.isValidObjectId(id)) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Electrician not found." });
+    }
+
+    const result = await Electrician.findByIdAndDelete(id);
+    if (!result) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Electrician not found." });
+    }
+
+    // Optional: Unassign this electrician from any requests they were assigned to.
+    await ServiceRequest.updateMany(
+      { assignedElectrician: id },
+      { $set: { assignedElectrician: null } },
+    );
+
+    return res.json({
+      success: true,
+      message: "Electrician deleted successfully.",
+    });
+  } catch (error) {
     return next(error);
   }
 });
