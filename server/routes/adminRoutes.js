@@ -158,7 +158,11 @@ router.patch(
         await request.save();
       }
 
-      return res.json({ success: true, request });
+      const populatedRequest = await ServiceRequest.findById(request._id)
+        .populate("assignedElectrician", "name phone")
+        .lean();
+
+      return res.json({ success: true, request: populatedRequest });
     } catch (error) {
       return next(error);
     }

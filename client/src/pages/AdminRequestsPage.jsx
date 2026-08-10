@@ -118,6 +118,12 @@ function AdminRequestsPage() {
           </div>
           <div className="flex gap-3">
             <Link
+              to="/admin/electricians"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-bold"
+            >
+              Manage Electricians
+            </Link>
+            <Link
               to="/"
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-bold"
             >
