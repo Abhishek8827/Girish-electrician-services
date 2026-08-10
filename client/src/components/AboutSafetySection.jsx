@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import SectionHeading from "./SectionHeading";
 import { businessConfig } from "../data/businessConfig";
 import {
@@ -36,6 +37,14 @@ const principles = [
 ];
 
 function AboutSafetySection() {
+  const parallaxRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: parallaxRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+
   return (
     <>
       <motion.section
@@ -43,8 +52,8 @@ function AboutSafetySection() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
+        transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+        className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
       >
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -53,24 +62,33 @@ function AboutSafetySection() {
               title="Technical service with a human standard."
               description="Girish Electrician Services is designed around professionalism, reliable communication, and safety-conscious electrical support."
             />
-            <p className="max-w-xl text-lg leading-8 text-brand-gray">
+            <p className="max-w-xl text-xl leading-9 text-brand-gray">
+              {" "}
+              {/* Increased font size and line-height */}
               From a minor fitting to a planned upgrade, each request deserves a
               clear process and responsible professional attention.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+            {" "}
+            {/* Increased top margin */}
             {principles.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="bg-brand-dark p-7 sm:p-8">
+              <article key={title} className="bg-brand-dark p-8 sm:p-9">
+                {" "}
+                {/* Increased padding */}
                 <Icon
                   size={24}
                   className="text-brand-yellow"
                   aria-hidden="true"
                 />
-                <h3 className="mt-6 text-xl font-bold text-brand-white">
+                <h3 className="mt-6 text-2xl font-bold text-brand-white">
+                  {" "}
+                  {/* Increased font size */}
                   {title}
                 </h3>
-                <p className="mt-3 leading-7 text-brand-gray">{description}</p>
+                <p className="mt-3 leading-8 text-brand-gray">{description}</p>{" "}
+                {/* Increased line-height */}
               </article>
             ))}
           </div>
@@ -79,12 +97,13 @@ function AboutSafetySection() {
 
       {/* New "Meet Girish" Section */}
       <motion.section
+        ref={parallaxRef}
         id="meet-girish"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="scroll-mt-24 bg-brand-black py-20 sm:py-28"
+        transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+        className="scroll-mt-24 bg-brand-black py-24 sm:py-32"
       >
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
@@ -94,7 +113,9 @@ function AboutSafetySection() {
                 title={`Meet ${businessConfig.shortName}`}
                 description="Girish is dedicated to providing reliable, safe, and high-quality electrical services to the Nepanagar community."
               />
-              <p className="mt-6 max-w-xl leading-7 text-brand-gray">
+              <p className="mt-6 max-w-xl leading-8 text-brand-gray">
+                {" "}
+                {/* Increased line-height */}
                 With years of experience and a deep understanding of electrical
                 systems, Girish ensures every job, big or small, is completed
                 with meticulous attention to detail and adherence to the highest
@@ -102,7 +123,9 @@ function AboutSafetySection() {
                 transparent service, making sure you understand the work being
                 done and why it's necessary.
               </p>
-              <p className="mt-4 max-w-xl leading-7 text-brand-gray">
+              <p className="mt-4 max-w-xl leading-8 text-brand-gray">
+                {" "}
+                {/* Increased line-height */}
                 Whether it's a routine installation, a complex repair, or an
                 emergency, you can count on Girish for professional and
                 efficient service.
@@ -110,15 +133,15 @@ function AboutSafetySection() {
             </div>
             <div className="relative flex justify-center">
               {/* Placeholder for an image of Girish, if available */}
-              <div className="relative w-full max-w-sm aspect-square bg-brand-dark rounded-3xl border-2 border-brand-yellow/20 overflow-hidden shadow-2xl flex items-center justify-center text-brand-gray text-center p-4">
-                <img
+              <div className="relative w-full max-w-sm aspect-square bg-brand-dark rounded-3xl border-2 border-brand-yellow/20 overflow-hidden shadow-2xl">
+                <motion.img
                   src={`${import.meta.env.BASE_URL}girish-profile.png`}
                   alt="Girish, the electrician"
-                  className="h-full w-full object-cover"
+                  className="absolute -bottom-1/4 -left-1/4 h-[150%] w-[150%] max-w-none object-cover"
+                  style={{ y: imageY }}
                   decoding="async"
                   fetchPriority="low"
                 />
-                {/* If no image, you could display text: "Image of Girish coming soon!" */}
               </div>
             </div>
           </div>
@@ -130,8 +153,8 @@ function AboutSafetySection() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="scroll-mt-24 bg-brand-yellow py-16 sm:py-20"
+        transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+        className="scroll-mt-24 bg-brand-yellow py-20 sm:py-24"
       >
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[auto_1fr_auto] lg:items-center">
           <MdOutlineShield
@@ -146,7 +169,9 @@ function AboutSafetySection() {
             <h2 className="mt-3 text-3xl font-extrabold text-brand-black">
               Leave live electrical work to qualified professionals.
             </h2>
-            <p className="mt-3 max-w-3xl leading-7 text-brand-black/75">
+            <p className="mt-3 max-w-3xl leading-8 text-brand-black/75">
+              {" "}
+              {/* Increased line-height */}
               If an electrical issue seems unsafe, avoid touching damaged
               equipment or attempting a repair yourself. Request professional
               assessment instead.

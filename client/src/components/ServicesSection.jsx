@@ -57,10 +57,10 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
       aria-controls={panelId}
       aria-selected={isActive}
       onClick={onClick}
-      className={`shrink-0 rounded-full border px-5 py-3 text-left text-sm font-bold transition-colors lg:w-full lg:rounded-xl ${
+      className={`shrink-0 rounded-full border px-6 py-3.5 text-left text-base font-bold transition-colors lg:w-full lg:rounded-xl ${
         isActive
           ? "border-brand-yellow bg-brand-yellow text-brand-black"
-          : "border-white/10 bg-brand-black/30 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white"
+          : "border-white/10 bg-brand-black/30 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white" // Increased base font size
       }`}
     >
       {category.label}
@@ -92,7 +92,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
       role="tabpanel"
       id={panelId}
       aria-labelledby={tabId}
-      className="relative overflow-hidden rounded-3xl border border-white/10 bg-brand-black p-7 sm:p-10"
+      className="relative overflow-hidden rounded-3xl border border-white/10 bg-brand-black p-8 sm:p-12"
     >
       <div
         aria-hidden="true"
@@ -103,13 +103,13 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
           <div className="flex items-center gap-3 text-brand-yellow">
             <MdDeveloperBoard size={22} />
             <span className="text-xs font-bold uppercase tracking-[0.2em]">
-              {category.label}
+              {category.label} {/* Kept this small as it's an eyebrow */}
             </span>
           </div>
-          <h3 className="mt-6 max-w-xl text-2xl font-bold text-brand-white sm:text-3xl">
+          <h3 className="mt-6 max-w-xl text-3xl font-bold text-brand-white sm:text-4xl">
             {category.title}
           </h3>
-          <p className="mt-4 max-w-xl leading-7 text-brand-gray">
+          <p className="mt-4 max-w-xl leading-8 text-brand-gray">
             {category.description}
           </p>
 
@@ -117,7 +117,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
             {category.services.map((service) => (
               <li
                 key={service}
-                className="flex items-center gap-3 text-sm font-medium text-brand-white"
+                className="flex items-center gap-4 text-base font-medium text-brand-white"
               >
                 <MdCheck
                   size={18}
@@ -132,7 +132,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
           <a
             href="#request-service"
             onClick={() => onSelectService(category.title)}
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-base font-bold text-brand-black transition-transform hover:scale-[1.02] active:scale-95"
+            className="mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-7 py-3.5 text-base font-bold text-brand-black transition-transform hover:scale-[1.02] active:scale-95"
           >
             Request Service
             <MdArrowForward size={18} />
@@ -172,19 +172,19 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-yellow">
-                {scene.label}
+                {scene.label} {/* Kept this small as it's an eyebrow */}
               </p>
-              <p className="mt-2 text-sm leading-6 text-brand-gray">
+              <p className="mt-2 text-base leading-7 text-brand-gray">
                 {scene.detail}
               </p>
             </div>
           </div>
         </motion.div>
 
-        <div className="xl:col-span-2 flex items-start gap-3 border-t border-white/10 pt-6 text-sm leading-6 text-brand-gray">
+        <div className="xl:col-span-2 flex items-start gap-4 border-t border-white/10 pt-6 text-base leading-7 text-brand-gray">
           <MdShield
             size={19}
-            className="mt-0.5 shrink-0 text-brand-yellow"
+            className="mt-1 shrink-0 text-brand-yellow"
             aria-hidden="true"
           />
           Complex electrical work should be assessed and carried out by a
@@ -206,7 +206,7 @@ function ServicesSection({ onSelectService }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
+      className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
@@ -215,7 +215,7 @@ function ServicesSection({ onSelectService }) {
           description="Choose a service area to see the kind of professional electrical support available."
         />
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           <div
             className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible"
             role="tablist"

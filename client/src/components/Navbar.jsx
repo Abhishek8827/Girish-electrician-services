@@ -46,10 +46,10 @@ const Navbar = () => {
         variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
         animate={isHidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
+        className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
           isScrolled
-            ? "bg-brand-black/90 backdrop-blur-md py-3 shadow-lg"
-            : "bg-transparent py-5"
+            ? "bg-brand-black/90 backdrop-blur-md py-4 shadow-lg"
+            : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -76,7 +76,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-brand-gray hover:text-brand-yellow transition-colors"
+                className="text-base font-medium text-brand-gray transition-colors hover:text-brand-yellow"
               >
                 {item.name}
               </a>
@@ -133,7 +133,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-lg font-medium text-brand-gray hover:text-brand-yellow"
+                  className="text-xl font-medium text-brand-gray hover:text-brand-yellow"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}

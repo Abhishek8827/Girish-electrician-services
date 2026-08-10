@@ -12,8 +12,8 @@ function FaqSection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="bg-brand-black py-20 sm:py-28"
+      transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+      className="bg-brand-black py-24 sm:py-32"
       aria-labelledby="faq-title"
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]">
@@ -46,7 +46,7 @@ function FaqSection() {
                 {isOpen && (
                   <p
                     id={panelId}
-                    className="max-w-2xl pb-6 leading-7 text-brand-gray"
+                    className="max-w-3xl pb-7 leading-8 text-brand-gray" // Increased max-width, padding, and line-height
                   >
                     {faq.answer}
                   </p>

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { MdArrowUpward } from "react-icons/md";
 
 function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +31,7 @@ function ScrollToTopButton() {
           className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-brand-yellow text-brand-black shadow-lg transition-transform hover:scale-105 active:scale-95"
           aria-label="Go to top"
         >
-          <ArrowUp size={24} />
+          <MdArrowUpward size={24} />
         </motion.button>
       )}
     </AnimatePresence>

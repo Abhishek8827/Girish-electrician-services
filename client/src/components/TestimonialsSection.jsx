@@ -30,15 +30,15 @@ function TestimonialCard({ testimonial, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="flex flex-col rounded-2xl border border-white/10 bg-brand-black p-8 [transform-style:preserve-3d]"
+      onMouseLeave={handleMouseLeave} // Increased card padding
+      className="flex flex-col rounded-2xl border border-white/10 bg-brand-black p-9 [transform-style:preserve-3d]"
     >
       <blockquote
-        className="flex-grow text-lg leading-8 text-brand-gray"
+        className="flex-grow text-xl leading-9 text-brand-gray" // Increased font size and line-height
         style={{ transform: "translateZ(30px)" }}
       >
         <FaQuoteLeft
-          className="mb-4 h-8 w-8 text-brand-yellow"
+          className="mb-5 h-9 w-9 text-brand-yellow" // Increased icon size and margin
           aria-hidden="true"
         />
         <p>“{testimonial.quote}”</p>
@@ -51,11 +51,13 @@ function TestimonialCard({ testimonial, index }) {
           <img
             src={`${import.meta.env.BASE_URL}${testimonial.image}`}
             alt={testimonial.name}
-            className="h-12 w-12 rounded-full object-cover bg-brand-dark"
+            className="h-14 w-14 rounded-full bg-brand-dark object-cover" // Increased image size
           />
           <div>
             <div className="font-bold text-brand-white">{testimonial.name}</div>
-            <div className="mt-1 text-sm text-brand-yellow">
+            <div className="mt-1 text-base text-brand-yellow">
+              {" "}
+              {/* Increased service text size */}
               {testimonial.service}
             </div>
           </div>
@@ -72,8 +74,8 @@ function TestimonialsSection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
+      transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+      className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         {/* Subtle Background Pattern */}
@@ -92,7 +94,9 @@ function TestimonialsSection() {
           align="center"
         />
 
-        <div className="mx-auto mt-14 grid max-w-lg gap-8 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-16 grid max-w-lg gap-10 lg:max-w-none lg:grid-cols-3">
+          {" "}
+          {/* Increased gap and top margin */}
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={testimonial.name}

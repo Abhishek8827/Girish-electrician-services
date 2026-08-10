@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CgSpinner } from "react-icons/cg";
 import { MdArrowBack, MdCheckCircle, MdSearch, MdShield } from "react-icons/md";
 import { trackServiceRequest } from "../api/serviceRequests";
 
@@ -83,8 +84,12 @@ function TrackRequestPage() {
             disabled={isLoading}
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 font-bold text-brand-black disabled:opacity-60 sm:w-auto"
           >
-            <MdSearch size={18} aria-hidden="true" />{" "}
-            {isLoading ? "Checking…" : "Track request"}
+            {isLoading ? (
+              <CgSpinner size={20} className="animate-spin" />
+            ) : (
+              <MdSearch size={18} aria-hidden="true" />
+            )}{" "}
+            <span>{isLoading ? "Checking…" : "Track request"}</span>
           </button>
         </form>
 

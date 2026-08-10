@@ -169,20 +169,21 @@ function RequestCta({ initialServiceType }) {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="scroll-mt-24 bg-brand-dark py-20 sm:py-28"
+      transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+      className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <div className="rounded-3xl border border-brand-yellow/30 bg-brand-black px-7 py-12 sm:px-12">
+        <div className="rounded-3xl border border-brand-yellow/30 bg-brand-black px-8 py-14 sm:px-14">
+          {" "}
+          {/* Increased padding */}
           <SectionHeading
             eyebrow="Professional support"
             title="Request a professional electrician."
             description="Share the essentials and preferred timing. We will use these details to understand your request before arranging the next step."
           />
-
           {requestId ? (
             <div
-              className="mt-10 max-w-2xl rounded-2xl border border-brand-yellow/40 bg-brand-yellow/10 p-7"
+              className="mt-12 max-w-3xl rounded-2xl border border-brand-yellow/40 bg-brand-yellow/10 p-8" // Increased max-width and padding
               role="status"
             >
               <MdCheckCircleOutline
@@ -190,10 +191,14 @@ function RequestCta({ initialServiceType }) {
                 className="text-brand-yellow"
                 aria-hidden="true"
               />
-              <h3 className="mt-5 text-2xl font-bold text-brand-white">
+              <h3 className="mt-5 text-3xl font-bold text-brand-white">
+                {" "}
+                {/* Increased font size */}
                 Request received.
               </h3>
-              <p className="mt-3 leading-7 text-brand-gray">
+              <p className="mt-3 leading-8 text-brand-gray">
+                {" "}
+                {/* Increased line-height */}
                 Your reference is{" "}
                 <strong className="text-brand-white">{requestId}</strong>. Keep
                 it for future communication about this request.
@@ -203,6 +208,8 @@ function RequestCta({ initialServiceType }) {
                 onClick={startAnotherRequest}
                 className="mt-6 rounded-full border border-brand-yellow px-5 py-2.5 text-sm font-bold text-brand-yellow hover:bg-brand-yellow hover:text-brand-black"
               >
+                {" "}
+                {/* Increased padding */}
                 Submit another request
               </button>
             </div>
@@ -210,7 +217,7 @@ function RequestCta({ initialServiceType }) {
             <form
               className="mt-10 grid gap-6"
               onSubmit={handleSubmit}
-              noValidate
+              noValidate // Increased gap for form fields
             >
               {serverMessage && (
                 <div
@@ -228,7 +235,7 @@ function RequestCta({ initialServiceType }) {
 
               <div className="grid gap-6 md:grid-cols-2">
                 <Field label="Full name" error={errors.name}>
-                  <input
+                  <input // Increased input padding
                     id="name"
                     name="name"
                     value={form.name}
@@ -239,7 +246,7 @@ function RequestCta({ initialServiceType }) {
                   />
                 </Field>
                 <Field label="Phone number" error={errors.phone}>
-                  <input
+                  <input // Increased input padding
                     id="phone"
                     name="phone"
                     value={form.phone}
@@ -251,7 +258,7 @@ function RequestCta({ initialServiceType }) {
                   />
                 </Field>
                 <Field label="Email address" error={errors.email}>
-                  <input
+                  <input // Increased input padding
                     id="email"
                     name="email"
                     type="email"
@@ -263,7 +270,7 @@ function RequestCta({ initialServiceType }) {
                   />
                 </Field>
                 <Field label="Service type" error={errors.serviceType}>
-                  <select
+                  <select // Increased select padding
                     id="serviceType"
                     name="serviceType"
                     value={form.serviceType}
@@ -278,7 +285,7 @@ function RequestCta({ initialServiceType }) {
                   </select>
                 </Field>
                 <Field label="Property type" error={errors.propertyType}>
-                  <select
+                  <select // Increased select padding
                     id="propertyType"
                     name="propertyType"
                     value={form.propertyType}
@@ -293,7 +300,7 @@ function RequestCta({ initialServiceType }) {
                   </select>
                 </Field>
                 <Field label="Preferred date" error={errors.preferredDate}>
-                  <input
+                  <input // Increased input padding
                     id="preferredDate"
                     name="preferredDate"
                     type="date"
@@ -305,7 +312,7 @@ function RequestCta({ initialServiceType }) {
                   />
                 </Field>
                 <Field label="Preferred time" error={errors.preferredTime}>
-                  <input
+                  <input // Increased input padding
                     id="preferredTime"
                     name="preferredTime"
                     type="time"
@@ -322,7 +329,7 @@ function RequestCta({ initialServiceType }) {
                 >
                   <label
                     htmlFor="image"
-                    className="field flex cursor-pointer items-center gap-3"
+                    className="field flex cursor-pointer items-center gap-3" // Increased input padding
                   >
                     <MdFileUpload
                       size={18}
@@ -345,7 +352,7 @@ function RequestCta({ initialServiceType }) {
               </div>
 
               <Field label="Service address" error={errors.address}>
-                <input
+                <input // Increased input padding
                   id="address"
                   name="address"
                   value={form.address}
@@ -358,7 +365,7 @@ function RequestCta({ initialServiceType }) {
               <Field
                 label="Describe the electrical issue"
                 error={errors.description}
-                hint="Please do not touch live wires or attempt a repair before a professional assessment."
+                hint="Please do not touch live wires or attempt a repair before a professional assessment." // Increased hint font size
               >
                 <textarea
                   id="description"
@@ -371,7 +378,9 @@ function RequestCta({ initialServiceType }) {
                 />
               </Field>
 
-              <label className="flex items-start gap-3 rounded-xl border border-white/10 bg-brand-dark p-4 text-sm leading-6 text-brand-gray">
+              <label className="flex items-start gap-3 rounded-xl border border-white/10 bg-brand-dark p-5 text-base leading-7 text-brand-gray">
+                {" "}
+                {/* Increased padding, font size, and line-height */}
                 <input
                   name="emergency"
                   type="checkbox"
@@ -391,7 +400,7 @@ function RequestCta({ initialServiceType }) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-7 py-4 text-base font-bold text-brand-black transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-8 py-4.5 text-lg font-bold text-brand-black transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto" // Increased padding and font size
               >
                 {isSubmitting ? (
                   <>
@@ -421,16 +430,19 @@ function Field({ label, hint, error, children }) {
 
   return (
     <div>
-      <label
+      <label // Increased label font size
         htmlFor={inputId}
-        className="mb-2 block text-sm font-bold text-brand-white"
+        className="mb-2 block text-base font-bold text-brand-white"
       >
         {label}
       </label>
       {children}
-      {hint && <p className="mt-2 text-xs leading-5 text-brand-gray">{hint}</p>}
-      {error && (
-        <p id={errorId} className="mt-2 text-sm text-red-300">
+      {hint && (
+        <p className="mt-2 text-sm leading-6 text-brand-gray">{hint}</p>
+      )}{" "}
+      {/* Increased hint font size and line-height */}
+      {error && ( // Increased error font size
+        <p id={errorId} className="mt-2 text-base text-red-300">
           {error}
         </p>
       )}

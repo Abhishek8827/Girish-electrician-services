@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { CircuitBoard, Info } from "lucide-react";
 import { useState } from "react";
 import { panelComponents } from "../data/siteContent";
+import { MdDeveloperBoard, MdInfoOutline } from "react-icons/md";
 import SectionHeading from "./SectionHeading";
 
 function ElectricalPanelSection() {
@@ -26,8 +26,8 @@ function ElectricalPanelSection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="scroll-mt-24 bg-brand-black py-20 sm:py-28"
+      transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
+      className="scroll-mt-24 bg-brand-black py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
@@ -37,31 +37,38 @@ function ElectricalPanelSection() {
           align="center"
         />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <div className="mt-16 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          {" "}
+          {/* Increased grid gap */}
           {/* Left Column: Panel Visualization */}
-          <div className="rounded-3xl border border-white/10 bg-brand-dark p-4 sm:p-6">
+          <div className="rounded-3xl border border-white/10 bg-brand-dark p-5 sm:p-7">
+            {" "}
+            {/* Increased padding */}
             <div
-              className="rounded-xl border-4 border-[#3b4142] bg-[#171c1d] p-4 shadow-2xl sm:p-6"
+              className="rounded-xl border-4 border-[#3b4142] bg-[#171c1d] p-5 shadow-2xl sm:p-7" // Increased padding
               aria-label="Simplified electrical panel diagram"
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-4">
                 <div className="flex items-center gap-3">
-                  <CircuitBoard
+                  <MdDeveloperBoard
                     size={20}
                     className="text-brand-yellow"
                     aria-hidden="true"
                   />
-                  <span className="text-sm font-bold tracking-wide">
+                  <span className="text-base font-bold tracking-wide">
+                    {" "}
+                    {/* Increased font size */}
                     DISTRIBUTION PANEL
                   </span>
                 </div>
-                <span className="text-xs font-bold text-brand-gray">
+                <span className="text-sm font-bold text-brand-gray">
+                  {" "}
+                  {/* Increased font size */}
                   EDUCATIONAL DEMO
                 </span>
               </div>
-
-              {/* Compact Panel Grid */}
-              <div className="mt-5 grid grid-cols-6 gap-2 sm:gap-3">
+              {/* Compact Panel Grid */} {/* Increased gap */}
+              <div className="mt-5 grid grid-cols-6 gap-3 sm:gap-4">
                 <PanelPart
                   id="main-breaker"
                   className="col-span-3"
@@ -154,7 +161,6 @@ function ElectricalPanelSection() {
                 />
               </div>
             </div>
-
             {/* Compact Component Selector */}
             <section
               className="mt-6 border-t border-white/10 pt-6"
@@ -164,9 +170,13 @@ function ElectricalPanelSection() {
                 id="component-categories-title"
                 className="text-xs font-bold uppercase tracking-[0.2em] text-brand-yellow"
               >
+                {" "}
+                {/* Increased font size */}
                 Explore by category
               </h3>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-3">
+                {" "}
+                {/* Increased gap */}
                 {Object.values(componentCategories)
                   .flat()
                   .map((component) => (
@@ -175,7 +185,7 @@ function ElectricalPanelSection() {
                       type="button"
                       onClick={() => setSelectedId(component.id)}
                       aria-pressed={component.id === selectedId}
-                      className={`rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${component.id === selectedId ? "border-brand-yellow bg-brand-yellow text-brand-black" : "border-white/15 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white"}`}
+                      className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${component.id === selectedId ? "border-brand-yellow bg-brand-yellow text-brand-black" : "border-white/15 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white"}`} // Increased padding and font size
                     >
                       {component.label}
                     </button>
@@ -183,26 +193,25 @@ function ElectricalPanelSection() {
               </div>
             </section>
           </div>
-
           {/* Right Column: Information Card */}
           <motion.aside
             key={selectedComponent.id}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
-            className="sticky top-28 rounded-3xl border border-brand-yellow/30 bg-brand-dark p-7 sm:p-8"
+            className="sticky top-28 rounded-3xl border border-brand-yellow/30 bg-brand-dark p-8 sm:p-9" // Increased padding
             aria-labelledby="selected-component-title"
             aria-live="assertive"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-yellow text-brand-black">
-              <Info size={22} aria-hidden="true" />
+              <MdInfoOutline size={22} aria-hidden="true" />
             </div>
             <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-brand-yellow">
-              Selected component
+              Selected component {/* Kept this small as it's an eyebrow */}
             </p>
             <h3
               id="selected-component-title"
-              className="mt-2 text-3xl font-extrabold"
+              className="mt-2 text-4xl font-extrabold" // Increased font size
             >
               {selectedComponent.label}
             </h3>
@@ -221,15 +230,20 @@ function ElectricalPanelSection() {
               </figure>
             )}
 
-            <p className="mt-5 leading-7 text-brand-gray">
+            <p className="mt-5 leading-8 text-brand-gray">
+              {" "}
+              {/* Increased line-height */}
               {selectedComponent.purpose}
             </p>
 
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-yellow">
-                Professional safety note
+                Professional safety note{" "}
+                {/* Kept this small as it's an eyebrow */}
               </p>
-              <p className="mt-3 text-sm leading-6 text-brand-white">
+              <p className="mt-3 text-base leading-7 text-brand-white">
+                {" "}
+                {/* Increased font size and line-height */}
                 {selectedComponent.professionalNote}
               </p>
             </div>
@@ -250,13 +264,15 @@ function PanelPart({ id, className, selectedId, onSelect }) {
       type="button"
       onClick={() => onSelect(id)}
       aria-pressed={isSelected}
-      className={`${className} relative flex h-16 items-end overflow-hidden rounded-lg border p-2.5 text-left transition-colors sm:h-20 ${isSelected ? "border-brand-yellow bg-brand-yellow/15" : "border-white/15 bg-brand-black/35 hover:border-brand-yellow/50"}`}
+      className={`${className} relative flex h-18 items-end overflow-hidden rounded-lg border p-2.5 text-left transition-colors sm:h-22 ${isSelected ? "border-brand-yellow bg-brand-yellow/15" : "border-white/15 bg-brand-black/35 hover:border-brand-yellow/50"}`} // Increased height for better tap target
     >
       <span
         aria-hidden="true"
         className={`absolute left-2.5 right-2.5 top-2.5 h-1 rounded-full ${isSelected ? "bg-brand-yellow" : "bg-white/20"}`}
       />
-      <span className="text-[11px] font-bold uppercase leading-tight tracking-wider text-brand-white">
+      <span className="text-xs font-bold uppercase leading-tight tracking-wider text-brand-white">
+        {" "}
+        {/* Increased font size */}
         {component.label}
       </span>
     </button>

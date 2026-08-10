@@ -11,8 +11,12 @@ import { businessConfig } from "../data/businessConfig";
 function Footer() {
   return (
     <footer className="border-t border-white/10 bg-brand-black text-brand-gray">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-6 py-20">
+        {" "}
+        {/* Increased section padding */}
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-3 lg:grid-cols-4">
+          {" "}
+          {/* Increased grid gap */}
           {/* Company Info */}
           <div className="md:col-span-3 lg:col-span-1">
             <a
@@ -24,18 +28,22 @@ function Footer() {
               </span>
               {businessConfig.name}
             </a>
-            <p className="mt-4 text-sm leading-6">{businessConfig.tagline}</p>
-            <p className="mt-2 text-sm leading-6">
+            <p className="mt-4 text-base leading-7">{businessConfig.tagline}</p>{" "}
+            {/* Increased font size and line-height */}
+            <p className="mt-2 text-base leading-7">
+              {" "}
+              {/* Increased font size and line-height */}
               Serving {businessConfig.serviceArea}
             </p>
           </div>
-
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
               Quick Links
             </h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-4 space-y-3 text-base">
+              {" "}
+              {/* Increased font size */}
               <li>
                 <a
                   href="#services"
@@ -70,13 +78,14 @@ function Footer() {
               </li>
             </ul>
           </div>
-
           {/* Contact Info */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
               Contact Us
             </h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-4 space-y-3 text-base">
+              {" "}
+              {/* Increased font size */}
               <li className="flex items-center gap-2.5">
                 <MdPhone size={16} className="shrink-0 text-brand-yellow" />
                 <a
@@ -118,13 +127,14 @@ function Footer() {
               </li>
             </ul>
           </div>
-
           {/* Social Media */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
               Follow Us
             </h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-4 space-y-3 text-base">
+              {" "}
+              {/* Increased font size */}
               <li>
                 <a
                   href="https://instagram.com/REPLACE_WITH_YOUR_PROFILE" // Replace with your actual Instagram URL
@@ -169,7 +179,9 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-sm">
+      <div className="border-t border-white/10 py-8 text-center text-base">
+        {" "}
+        {/* Increased padding and font size */}
         <p>
           © {new Date().getFullYear()} {businessConfig.name}. All rights
           reserved. |{" "}
