@@ -135,8 +135,8 @@ function AboutSafetySection() {
               {/* Placeholder for an image of Girish, if available */}
               <div className="relative w-full max-w-sm aspect-square bg-brand-dark rounded-3xl border-2 border-brand-yellow/20 overflow-hidden shadow-2xl">
                 <motion.img
-                  src={`${import.meta.env.BASE_URL}girish-profile.png`}
-                  alt="Girish, the electrician"
+                  src={`${import.meta.env.BASE_URL}${businessConfig.profileImage}`}
+                  alt={businessConfig.profileImageAlt}
                   className="absolute -bottom-1/4 -left-1/4 h-[150%] w-[150%] max-w-none object-cover"
                   style={{ y: imageY }}
                   decoding="async"
