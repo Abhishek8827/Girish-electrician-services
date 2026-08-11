@@ -9,6 +9,8 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { businessConfig } from "../data/businessConfig";
 
 function Footer() {
+  const whatsappPhone = businessConfig.phone.replace(/[^0-9]/g, "");
+  const telPhone = businessConfig.phone.replace(/[^0-9+]/g, "");
   return (
     <footer className="border-t border-white/10 bg-brand-black text-brand-gray">
       <div className="mx-auto max-w-7xl px-6 py-20">
@@ -89,7 +91,7 @@ function Footer() {
               <li className="flex items-center gap-2.5">
                 <MdPhone size={16} className="shrink-0 text-brand-yellow" />
                 <a
-                  href={`tel:${businessConfig.phone}`}
+                  href={`tel:${telPhone}`}
                   className="font-bold text-base text-brand-white hover:text-brand-yellow transition-colors"
                 >
                   {businessConfig.phone}
@@ -151,7 +153,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href={`https://wa.me/${businessConfig.phone}`}
+                  href={`https://wa.me/${whatsappPhone}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
