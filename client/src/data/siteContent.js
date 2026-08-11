@@ -309,3 +309,62 @@ export const testimonials = [
     image: "/testimonials/rohan-desai.png", // Add image to public/testimonials/
   },
 ];
+
+export const testimonials = [
+  {
+    quote:
+      "The team was incredibly professional and tidy. They fixed a complex wiring issue in our old house that others couldn't diagnose. Highly recommended for their expertise and clear communication.",
+    name: "Priya Sharma",
+    service: "Residential Fault Finding",
+    image: "/testimonials/priya-sharma.png",
+  },
+  {
+    quote:
+      "Fast, efficient, and very safety-conscious. They upgraded the entire lighting system in our office over a weekend with minimal disruption. The result is fantastic.",
+    name: "Amit Singh",
+    service: "Commercial Lighting Upgrade",
+    image: "/testimonials/amit-singh.png",
+  },
+  {
+    quote:
+      "From the initial request to the final handover, the process was seamless. The electrician who visited was knowledgeable and explained everything clearly. I felt confident in their work.",
+    name: "Rohan Desai",
+    service: "Panel & MCB Service",
+    image: "/testimonials/rohan-desai.png",
+  },
+  {
+    quote:
+      "I was impressed with the quick response for an emergency callout. The issue was resolved safely and efficiently. Girish Electrician Services is now my go-to for any electrical needs.",
+    name: "Anjali Mehta",
+    service: "Emergency Electrical Support",
+    image: "/testimonials/anjali-mehta.png",
+  },
+  {
+    quote:
+      "They installed new ceiling fans and sockets throughout our new apartment. The work was neat, and they cleaned up perfectly afterwards. Very professional service.",
+    name: "Vikram Patel",
+    service: "Home Wiring & Installation",
+    image: "/testimonials/vikram-patel.png",
+  },
+  {
+    quote:
+      "Our office's network cabling was a mess. The team came in and organized everything with new trunking and structured cabling. Our connectivity issues are finally gone!",
+    name: "Sunita Rao",
+    service: "Office Network Cabling",
+    image: "/testimonials/sunita-rao.png",
+  },
+  {
+    quote:
+      "The safety inspection was thorough and gave us peace of mind. They identified a potential hazard we were unaware of and fixed it on the spot. Excellent service.",
+    name: "Rajesh Kumar",
+    service: "Electrical Safety Inspection",
+    image: "/testimonials/rajesh-kumar.png",
+  },
+  {
+    quote:
+      "We had a complete panel upgrade. The process was smooth and well-planned. The new distribution board is much safer and more organized. I'm very satisfied with the quality of work.",
+    name: "Deepika Iyer",
+    service: "Electrical Panel Upgrade",
+    image: "/testimonials/deepika-iyer.png",
+  },
+];
