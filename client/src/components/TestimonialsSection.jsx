@@ -6,7 +6,7 @@ import SectionHeading from "./SectionHeading";
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 function TestimonialsSection() {
-  const duration = duplicatedTestimonials.length * 5; // Adjust speed here (e.g., 5 seconds per testimonial)
+  const duration = duplicatedTestimonials.length * 3; // Adjust speed here (e.g., 3 seconds per testimonial)
 
   return (
     <section className="bg-brand-black py-24 sm:py-32">
