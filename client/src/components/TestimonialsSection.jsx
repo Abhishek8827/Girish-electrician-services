@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
+import { useEffect, useMemo } from "react";
 import { testimonials } from "../data/siteContent";
 import SectionHeading from "./SectionHeading";
 
@@ -6,7 +7,24 @@ import SectionHeading from "./SectionHeading";
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 function TestimonialsSection() {
-  const duration = duplicatedTestimonials.length * 2; // Adjust speed here (e.g., 2 seconds per testimonial)
+  const duration = duplicatedTestimonials.length * 2;
+  const controls = useAnimationControls();
+
+  const animation = useMemo(
+    () => ({
+      x: ["0%", `-${100 / 2}%`],
+      transition: {
+        ease: "linear",
+        duration: duration,
+        repeat: Infinity,
+      },
+    }),
+    [duration],
+  );
+
+  useEffect(() => {
+    controls.start(animation);
+  }, [controls, animation]);
 
   return (
     <section className="bg-brand-black py-24 sm:py-32">
@@ -18,19 +36,12 @@ function TestimonialsSection() {
         />
       </div>
 
-      <div className="mt-14 w-full overflow-hidden">
-        <motion.div
-          className="flex gap-8"
-          animate={{
-            x: ["0%", `-${100 / 2}%`], // Move from start to the end of the first half
-          }}
-          transition={{
-            ease: "linear",
-            duration: duration,
-            repeat: Infinity,
-          }}
-          whileHover={{ animationPlayState: "paused" }}
-        >
+      <motion.div
+        className="mt-14 w-full overflow-hidden"
+        onHoverStart={() => controls.stop()}
+        onHoverEnd={() => controls.start(animation)}
+      >
+        <motion.div className="flex gap-8" animate={controls}>
           {duplicatedTestimonials.map((testimonial, index) => (
             <article
               key={`${testimonial.name}-${index}`}
@@ -58,7 +69,7 @@ function TestimonialsSection() {
             </article>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
