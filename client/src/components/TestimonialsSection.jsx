@@ -6,7 +6,7 @@ import SectionHeading from "./SectionHeading";
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 function TestimonialsSection() {
-  const duration = duplicatedTestimonials.length * 3; // Adjust speed here (e.g., 3 seconds per testimonial)
+  const duration = duplicatedTestimonials.length * 2; // Adjust speed here (e.g., 2 seconds per testimonial)
 
   return (
     <section className="bg-brand-black py-24 sm:py-32">
@@ -29,6 +29,7 @@ function TestimonialsSection() {
             duration: duration,
             repeat: Infinity,
           }}
+          whileHover={{ animationPlayState: "paused" }}
         >
           {duplicatedTestimonials.map((testimonial, index) => (
             <article
