@@ -137,20 +137,22 @@ function Footer() {
             <ul className="mt-4 space-y-3 text-base">
               {" "}
               {/* Increased font size */}
-              <li>
-                <a
-                  href="https://instagram.com/REPLACE_WITH_YOUR_PROFILE" // Replace with your actual Instagram URL
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 transition-colors hover:text-gray-900 dark:hover:text-brand-white"
-                >
-                  <FaInstagram
-                    size={16}
-                    className="shrink-0 text-brand-yellow"
-                  />
-                  Instagram
-                </a>
-              </li>
+              {businessConfig.instagramUrl && (
+                <li>
+                  <a
+                    href={businessConfig.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 transition-colors hover:text-gray-900 dark:hover:text-brand-white"
+                  >
+                    <FaInstagram
+                      size={16}
+                      className="shrink-0 text-brand-yellow"
+                    />
+                    Instagram
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href={`https://wa.me/${whatsappPhone}`}

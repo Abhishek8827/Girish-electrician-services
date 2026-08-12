@@ -9,4 +9,5 @@ export const businessConfig = {
   location: "Nepanagar, MP, India",
   profileImage: "girish-profile.png",
   profileImageAlt: "A portrait of Girish, the lead electrician.",
+  instagramUrl: "https://www.instagram.com/abhishek_._._/", // Replace with actual Instagram URL or leave empty to hide
 };
