@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import {
   MdCheckCircleOutline,
+  MdContentCopy,
+  MdCheck,
   MdErrorOutline,
   MdFileUpload,
 } from "react-icons/md";
@@ -57,6 +59,7 @@ function RequestCta({ initialServiceType }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverMessage, setServerMessage] = useState("");
   const [requestId, setRequestId] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
 
   function handleChange(event) {
     const { name, value, type, checked, files } = event.target;
@@ -143,6 +146,15 @@ function RequestCta({ initialServiceType }) {
     setRequestId("");
     setServerMessage("");
     setErrors({});
+    setIsCopied(false);
+  }
+
+  function handleCopy() {
+    if (!requestId) return;
+    navigator.clipboard.writeText(requestId).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    });
   }
 
   useEffect(() => {
@@ -196,15 +208,35 @@ function RequestCta({ initialServiceType }) {
                 {/* Increased font size */}
                 Request received.
               </h3>
-              <p className="mt-3 leading-8 text-gray-600 dark:text-brand-gray">
-                {" "}
-                {/* Increased line-height */}
-                Your reference is{" "}
-                <strong className="text-gray-800 dark:text-brand-white">
-                  {requestId}
-                </strong>
-                . Keep it for future communication about this request.
-              </p>
+              <div className="mt-4">
+                <p className="text-sm text-gray-600 dark:text-brand-gray">
+                  Your reference ID
+                </p>
+                <div className="mt-2 flex items-center gap-3">
+                  <strong className="text-xl font-bold text-gray-800 dark:text-brand-white">
+                    {requestId}
+                  </strong>
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className="flex w-24 items-center justify-center gap-2 rounded-full border border-brand-yellow/50 px-3 py-1.5 text-xs font-bold text-brand-yellow transition-colors hover:bg-brand-yellow hover:text-brand-black"
+                  >
+                    {isCopied ? (
+                      <>
+                        <MdCheck size={14} /> Copied
+                      </>
+                    ) : (
+                      <>
+                        <MdContentCopy size={14} /> Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+                <p className="mt-2 text-sm leading-8 text-gray-600 dark:text-brand-gray">
+                  Keep this ID for future communication about your request.
+                </p>
+              </div>
+
               <button
                 type="button"
                 onClick={startAnotherRequest}
