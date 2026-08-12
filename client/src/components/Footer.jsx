@@ -194,6 +194,17 @@ function Footer() {
             Track a Request
           </Link>
         </p>
+        <p className="mt-4 text-sm text-brand-gray">
+          Designed & Developed by{" "}
+          <a
+            href="https://github.com/Abhishek8827"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-brand-white hover:text-brand-yellow transition-colors"
+          >
+            Abhishek
+          </a>
+        </p>
       </div>
     </footer>
   );
