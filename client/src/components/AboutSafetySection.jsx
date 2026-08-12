@@ -53,7 +53,7 @@ function AboutSafetySection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
-        className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
+        className="scroll-mt-24 bg-gray-100 py-24 dark:bg-brand-dark sm:py-32"
       >
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -62,7 +62,7 @@ function AboutSafetySection() {
               title="Technical service with a human standard."
               description="Girish Electrician Services is designed around professionalism, reliable communication, and safety-conscious electrical support."
             />
-            <p className="max-w-xl text-xl leading-9 text-brand-gray">
+            <p className="max-w-xl text-xl leading-9 text-gray-600 dark:text-brand-gray">
               {" "}
               {/* Increased font size and line-height */}
               From a minor fitting to a planned upgrade, each request deserves a
@@ -70,11 +70,14 @@ function AboutSafetySection() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/10 sm:grid-cols-2">
             {" "}
             {/* Increased top margin */}
             {principles.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="bg-brand-dark p-8 sm:p-9">
+              <article
+                key={title}
+                className="bg-gray-100 p-8 dark:bg-brand-dark sm:p-9"
+              >
                 {" "}
                 {/* Increased padding */}
                 <Icon
@@ -82,12 +85,14 @@ function AboutSafetySection() {
                   className="text-brand-yellow"
                   aria-hidden="true"
                 />
-                <h3 className="mt-6 text-2xl font-bold text-brand-white">
+                <h3 className="mt-6 text-2xl font-bold text-gray-900 dark:text-brand-white">
                   {" "}
                   {/* Increased font size */}
                   {title}
                 </h3>
-                <p className="mt-3 leading-8 text-brand-gray">{description}</p>{" "}
+                <p className="mt-3 leading-8 text-gray-600 dark:text-brand-gray">
+                  {description}
+                </p>{" "}
                 {/* Increased line-height */}
               </article>
             ))}
@@ -103,7 +108,7 @@ function AboutSafetySection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
-        className="scroll-mt-24 bg-brand-black py-24 sm:py-32"
+        className="scroll-mt-24 bg-white py-24 dark:bg-brand-black sm:py-32"
       >
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
@@ -113,7 +118,7 @@ function AboutSafetySection() {
                 title={`Meet ${businessConfig.shortName}`}
                 description="Girish is dedicated to providing reliable, safe, and high-quality electrical services to the Nepanagar community."
               />
-              <p className="mt-6 max-w-xl leading-8 text-brand-gray">
+              <p className="mt-6 max-w-xl leading-8 text-gray-600 dark:text-brand-gray">
                 {" "}
                 {/* Increased line-height */}
                 With years of experience and a deep understanding of electrical
@@ -123,7 +128,7 @@ function AboutSafetySection() {
                 transparent service, making sure you understand the work being
                 done and why it's necessary.
               </p>
-              <p className="mt-4 max-w-xl leading-8 text-brand-gray">
+              <p className="mt-4 max-w-xl leading-8 text-gray-600 dark:text-brand-gray">
                 {" "}
                 {/* Increased line-height */}
                 Whether it's a routine installation, a complex repair, or an
@@ -133,7 +138,7 @@ function AboutSafetySection() {
             </div>
             <div className="relative flex justify-center">
               {/* Placeholder for an image of Girish, if available */}
-              <div className="relative w-full max-w-sm aspect-square bg-brand-dark rounded-3xl border-2 border-brand-yellow/20 overflow-hidden shadow-2xl">
+              <div className="relative aspect-square w-full max-w-sm overflow-hidden rounded-3xl border-2 border-brand-yellow/20 bg-gray-100 shadow-2xl dark:bg-brand-dark">
                 <motion.img
                   src={`${import.meta.env.BASE_URL}${businessConfig.profileImage}`}
                   alt={businessConfig.profileImageAlt}

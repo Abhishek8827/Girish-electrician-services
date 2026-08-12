@@ -58,9 +58,9 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
       aria-selected={isActive}
       onClick={onClick}
       className={`shrink-0 rounded-full border px-6 py-3.5 text-left text-base font-bold transition-colors lg:w-full lg:rounded-xl ${
-        isActive
-          ? "border-brand-yellow bg-brand-yellow text-brand-black"
-          : "border-white/10 bg-brand-black/30 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white" // Increased base font size
+        isActive // Active state is the same for both themes
+          ? "border-brand-yellow bg-brand-yellow text-brand-black" // Inactive state changes with theme
+          : "border-gray-300 bg-white text-gray-600 hover:border-brand-yellow/50 hover:text-gray-900 dark:border-white/10 dark:bg-brand-black/30 dark:text-brand-gray dark:hover:text-brand-white"
       }`}
     >
       {category.label}
@@ -92,7 +92,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
       role="tabpanel"
       id={panelId}
       aria-labelledby={tabId}
-      className="relative overflow-hidden rounded-3xl border border-white/10 bg-brand-black p-8 sm:p-12"
+      className="relative overflow-hidden rounded-3xl border border-black/10 bg-white p-8 dark:border-white/10 dark:bg-brand-black sm:p-12"
     >
       <div
         aria-hidden="true"
@@ -106,10 +106,10 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
               {category.label} {/* Kept this small as it's an eyebrow */}
             </span>
           </div>
-          <h3 className="mt-6 max-w-xl text-3xl font-bold text-brand-white sm:text-4xl">
+          <h3 className="mt-6 max-w-xl text-3xl font-bold text-gray-900 dark:text-brand-white sm:text-4xl">
             {category.title}
           </h3>
-          <p className="mt-4 max-w-xl leading-8 text-brand-gray">
+          <p className="mt-4 max-w-xl leading-8 text-gray-600 dark:text-brand-gray">
             {category.description}
           </p>
 
@@ -117,7 +117,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
             {category.services.map((service) => (
               <li
                 key={service}
-                className="flex items-center gap-4 text-base font-medium text-brand-white"
+                className="flex items-center gap-4 text-base font-medium text-gray-800 dark:text-brand-white"
               >
                 <MdCheck
                   size={18}
@@ -144,7 +144,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="relative min-h-64 overflow-hidden rounded-2xl border border-brand-yellow/25 bg-brand-dark p-6"
+          className="relative min-h-64 overflow-hidden rounded-2xl border border-brand-yellow/25 bg-gray-200 p-6 dark:bg-brand-dark"
           aria-label={`${scene.label}: ${scene.detail}`}
         >
           <div
@@ -152,7 +152,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
             className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(250,204,21,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.15)_1px,transparent_1px)] [background-size:28px_28px]"
           />
           <div className="relative flex h-full flex-col justify-between">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between ">
               <span className="rounded-lg border border-brand-yellow/40 bg-brand-black/60 p-3 text-brand-yellow">
                 <SceneIcon size={27} aria-hidden="true" />
               </span>
@@ -166,7 +166,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
               {[0, 1, 2, 3].map((index) => (
                 <span
                   key={index}
-                  className={`h-12 rounded-md border ${index === 1 ? "border-brand-yellow bg-brand-yellow/25" : "border-white/15 bg-brand-black/50"}`}
+                  className={`h-12 rounded-md border ${index === 1 ? "border-brand-yellow bg-brand-yellow/25" : "border-gray-400 bg-white/50 dark:border-white/15 dark:bg-brand-black/50"}`}
                 />
               ))}
             </div>
@@ -174,14 +174,14 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-yellow">
                 {scene.label} {/* Kept this small as it's an eyebrow */}
               </p>
-              <p className="mt-2 text-base leading-7 text-brand-gray">
+              <p className="mt-2 text-base leading-7 text-gray-600 dark:text-brand-gray">
                 {scene.detail}
               </p>
             </div>
           </div>
         </motion.div>
 
-        <div className="xl:col-span-2 flex items-start gap-4 border-t border-white/10 pt-6 text-base leading-7 text-brand-gray">
+        <div className="flex items-start gap-4 border-t border-black/10 pt-6 text-base leading-7 text-gray-600 dark:border-white/10 dark:text-brand-gray xl:col-span-2">
           <MdShield
             size={19}
             className="mt-1 shrink-0 text-brand-yellow"
@@ -206,7 +206,7 @@ function ServicesSection({ onSelectService }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
+      className="scroll-mt-24 bg-gray-100 py-24 dark:bg-brand-dark sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading

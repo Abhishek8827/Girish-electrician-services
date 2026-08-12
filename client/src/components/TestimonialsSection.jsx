@@ -27,7 +27,7 @@ function TestimonialsSection() {
   }, [controls, animation]);
 
   return (
-    <section className="bg-brand-black py-24 sm:py-32">
+    <section className="bg-white py-24 dark:bg-brand-black sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           eyebrow="What our clients say"
@@ -45,7 +45,7 @@ function TestimonialsSection() {
           {duplicatedTestimonials.map((testimonial, index) => (
             <article
               key={`${testimonial.name}-${index}`}
-              className="w-[90vw] max-w-md flex-shrink-0 rounded-2xl border border-white/10 bg-brand-dark p-8"
+              className="w-[90vw] max-w-md flex-shrink-0 rounded-2xl border border-black/10 bg-gray-100 p-8 dark:border-white/10 dark:bg-brand-dark"
             >
               <div className="flex items-center gap-4">
                 <img
@@ -55,15 +55,15 @@ function TestimonialsSection() {
                   loading="lazy"
                 />
                 <div>
-                  <h3 className="font-bold text-brand-white">
+                  <h3 className="font-bold text-gray-900 dark:text-brand-white">
                     {testimonial.name}
                   </h3>
-                  <p className="text-sm text-brand-gray">
+                  <p className="text-sm text-gray-600 dark:text-brand-gray">
                     {testimonial.service}
                   </p>
                 </div>
               </div>
-              <blockquote className="mt-6 leading-7 text-brand-gray">
+              <blockquote className="mt-6 leading-7 text-gray-600 dark:text-brand-gray">
                 <p>“{testimonial.quote}”</p>
               </blockquote>
             </article>

@@ -170,10 +170,10 @@ function RequestCta({ initialServiceType }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
-      className="scroll-mt-24 bg-brand-dark py-24 sm:py-32"
+      className="scroll-mt-24 bg-gray-100 py-24 dark:bg-brand-dark sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <div className="rounded-3xl border border-brand-yellow/30 bg-brand-black px-8 py-14 sm:px-14">
+        <div className="rounded-3xl border border-brand-yellow/30 bg-white px-8 py-14 dark:bg-brand-black sm:px-14">
           {" "}
           {/* Increased padding */}
           <SectionHeading
@@ -183,7 +183,7 @@ function RequestCta({ initialServiceType }) {
           />
           {requestId ? (
             <div
-              className="mt-12 max-w-3xl rounded-2xl border border-brand-yellow/40 bg-brand-yellow/10 p-8" // Increased max-width and padding
+              className="mt-12 max-w-3xl rounded-2xl border border-brand-yellow/40 bg-brand-yellow/10 p-8"
               role="status"
             >
               <MdCheckCircleOutline
@@ -191,17 +191,19 @@ function RequestCta({ initialServiceType }) {
                 className="text-brand-yellow"
                 aria-hidden="true"
               />
-              <h3 className="mt-5 text-3xl font-bold text-brand-white">
+              <h3 className="mt-5 text-3xl font-bold text-gray-900 dark:text-brand-white">
                 {" "}
                 {/* Increased font size */}
                 Request received.
               </h3>
-              <p className="mt-3 leading-8 text-brand-gray">
+              <p className="mt-3 leading-8 text-gray-600 dark:text-brand-gray">
                 {" "}
                 {/* Increased line-height */}
                 Your reference is{" "}
-                <strong className="text-brand-white">{requestId}</strong>. Keep
-                it for future communication about this request.
+                <strong className="text-gray-800 dark:text-brand-white">
+                  {requestId}
+                </strong>
+                . Keep it for future communication about this request.
               </p>
               <button
                 type="button"
@@ -221,7 +223,7 @@ function RequestCta({ initialServiceType }) {
             >
               {serverMessage && (
                 <div
-                  className="flex gap-3 rounded-xl border border-red-400/40 bg-red-400/10 p-4 text-sm leading-6 text-red-100"
+                  className="flex gap-3 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm leading-6 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-100"
                   role="alert"
                 >
                   <MdErrorOutline
@@ -378,7 +380,7 @@ function RequestCta({ initialServiceType }) {
                 />
               </Field>
 
-              <label className="flex items-start gap-3 rounded-xl border border-white/10 bg-brand-dark p-5 text-base leading-7 text-brand-gray">
+              <label className="flex items-start gap-3 rounded-xl border border-black/10 bg-gray-100 p-5 text-base leading-7 text-gray-600 dark:border-white/10 dark:bg-brand-dark dark:text-brand-gray">
                 {" "}
                 {/* Increased padding, font size, and line-height */}
                 <input
@@ -389,7 +391,7 @@ function RequestCta({ initialServiceType }) {
                   className="mt-1 h-4 w-4 accent-brand-yellow"
                 />
                 <span>
-                  <strong className="text-brand-white">
+                  <strong className="text-gray-800 dark:text-brand-white">
                     This is an urgent electrical issue.
                   </strong>{" "}
                   If there is immediate danger, keep clear of the area and
@@ -432,17 +434,22 @@ function Field({ label, hint, error, children }) {
     <div>
       <label // Increased label font size
         htmlFor={inputId}
-        className="mb-2 block text-base font-bold text-brand-white"
+        className="mb-2 block text-base font-bold text-gray-900 dark:text-brand-white"
       >
         {label}
       </label>
       {children}
       {hint && (
-        <p className="mt-2 text-sm leading-6 text-brand-gray">{hint}</p>
+        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-brand-gray">
+          {hint}
+        </p>
       )}{" "}
       {/* Increased hint font size and line-height */}
       {error && ( // Increased error font size
-        <p id={errorId} className="mt-2 text-base text-red-300">
+        <p
+          id={errorId}
+          className="mt-2 text-base text-red-600 dark:text-red-300"
+        >
           {error}
         </p>
       )}

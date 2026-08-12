@@ -12,7 +12,7 @@ function Footer() {
   const whatsappPhone = businessConfig.phone.replace(/[^0-9]/g, "");
   const telPhone = businessConfig.phone.replace(/[^0-9+]/g, "");
   return (
-    <footer className="border-t border-white/10 bg-brand-black text-brand-gray">
+    <footer className="border-t border-black/10 bg-gray-50 text-gray-600 dark:border-white/10 dark:bg-brand-black dark:text-brand-gray">
       <div className="mx-auto max-w-7xl px-6 py-20">
         {" "}
         {/* Increased section padding */}
@@ -23,7 +23,7 @@ function Footer() {
           <div className="md:col-span-3 lg:col-span-1">
             <a
               href="#top"
-              className="flex items-center gap-2 font-bold text-brand-white"
+              className="flex items-center gap-2 font-bold text-gray-900 dark:text-brand-white"
             >
               <span className="rounded-md bg-brand-yellow p-1.5 text-brand-black">
                 <MdFlashOn size={17} /> {/* Using MdFlashOn for the logo */}
@@ -40,7 +40,7 @@ function Footer() {
           </div>
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-brand-white">
               Quick Links
             </h3>
             <ul className="mt-4 space-y-3 text-base">
@@ -49,7 +49,7 @@ function Footer() {
               <li>
                 <a
                   href="#services"
-                  className="hover:text-brand-white transition-colors"
+                  className="transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   Services
                 </a>
@@ -57,7 +57,7 @@ function Footer() {
               <li>
                 <a
                   href="#process"
-                  className="hover:text-brand-white transition-colors"
+                  className="transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   Process
                 </a>
@@ -65,7 +65,7 @@ function Footer() {
               <li>
                 <a
                   href="#meet-girish"
-                  className="hover:text-brand-white transition-colors"
+                  className="transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   About Us
                 </a>
@@ -82,7 +82,7 @@ function Footer() {
           </div>
           {/* Contact Info */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-brand-white">
               Contact Us
             </h3>
             <ul className="mt-4 space-y-3 text-base">
@@ -92,7 +92,7 @@ function Footer() {
                 <MdPhone size={16} className="shrink-0 text-brand-yellow" />
                 <a
                   href={`tel:${telPhone}`}
-                  className="font-bold text-base text-brand-white hover:text-brand-yellow transition-colors"
+                  className="text-base font-bold text-gray-900 transition-colors hover:text-brand-yellow dark:text-brand-white"
                 >
                   {businessConfig.phone}
                 </a>
@@ -102,7 +102,7 @@ function Footer() {
                   <MdPhone size={16} className="shrink-0 text-red-400" />
                   <a
                     href={`tel:${businessConfig.emergencyContact}`}
-                    className="text-red-300 hover:text-red-200 transition-colors"
+                    className="text-red-600 transition-colors hover:text-red-700 dark:text-red-300 dark:hover:text-red-200"
                   >
                     Emergency: {businessConfig.emergencyContact}
                   </a>
@@ -115,7 +115,7 @@ function Footer() {
                 />
                 <a
                   href={`mailto:${businessConfig.email}`}
-                  className="hover:text-brand-white transition-colors"
+                  className="transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   {businessConfig.email}
                 </a>
@@ -131,7 +131,7 @@ function Footer() {
           </div>
           {/* Social Media */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-white">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-brand-white">
               Follow Us
             </h3>
             <ul className="mt-4 space-y-3 text-base">
@@ -142,7 +142,7 @@ function Footer() {
                   href="https://instagram.com/REPLACE_WITH_YOUR_PROFILE" // Replace with your actual Instagram URL
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
+                  className="flex items-center gap-2.5 transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   <FaInstagram
                     size={16}
@@ -156,7 +156,7 @@ function Footer() {
                   href={`https://wa.me/${whatsappPhone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
+                  className="flex items-center gap-2.5 transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   <FaWhatsapp
                     size={16}
@@ -168,7 +168,7 @@ function Footer() {
               <li>
                 <a
                   href={`mailto:${businessConfig.email}`}
-                  className="flex items-center gap-2.5 hover:text-brand-white transition-colors"
+                  className="flex items-center gap-2.5 transition-colors hover:text-gray-900 dark:hover:text-brand-white"
                 >
                   <MdMailOutline
                     size={16}
@@ -181,7 +181,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-white/10 py-8 text-center text-base">
+      <div className="border-t border-black/10 py-8 text-center text-base dark:border-white/10">
         {" "}
         {/* Increased padding and font size */}
         <p>
@@ -194,13 +194,13 @@ function Footer() {
             Track a Request
           </Link>
         </p>
-        <p className="mt-4 text-sm text-brand-gray">
+        <p className="mt-4 text-sm text-gray-600 dark:text-brand-gray">
           Designed & Developed by{" "}
           <a
             href="https://github.com/Abhishek8827"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-brand-white hover:text-brand-yellow transition-colors"
+            className="font-bold text-gray-800 transition-colors hover:text-brand-yellow dark:text-brand-white"
           >
             Abhishek
           </a>

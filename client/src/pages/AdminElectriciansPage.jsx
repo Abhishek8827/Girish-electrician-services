@@ -69,7 +69,7 @@ function AdminElectriciansPage() {
   };
 
   return (
-    <main className="min-h-screen bg-brand-black px-6 py-10 text-brand-white">
+    <main className="min-h-screen bg-gray-100 px-6 py-10 text-gray-900 dark:bg-brand-black dark:text-brand-white">
       <div className="mx-auto max-w-4xl">
         <div className="flex flex-wrap items-center justify-between gap-5">
           <div>
@@ -82,7 +82,7 @@ function AdminElectriciansPage() {
           </div>
           <Link
             to="/admin/requests"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-bold"
+            className="inline-flex items-center gap-2 rounded-full border border-black/20 px-4 py-2 text-sm font-bold dark:border-white/20"
           >
             <MdArrowBack size={16} aria-hidden="true" /> Back to Requests
           </Link>
@@ -90,7 +90,7 @@ function AdminElectriciansPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="mt-10 grid gap-4 rounded-2xl border border-white/10 bg-brand-dark p-6 sm:grid-cols-[1fr_1fr_auto]"
+          className="mt-10 grid gap-4 rounded-2xl border border-black/10 bg-white p-6 dark:border-white/10 dark:bg-brand-dark sm:grid-cols-[1fr_1fr_auto]"
         >
           <input
             name="name"
@@ -118,7 +118,7 @@ function AdminElectriciansPage() {
 
         {error && (
           <p
-            className="mt-5 rounded-xl border border-red-400/40 bg-red-400/10 p-4 text-red-100"
+            className="mt-5 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-100"
             role="alert"
           >
             {error}
@@ -127,17 +127,23 @@ function AdminElectriciansPage() {
 
         <div className="mt-6">
           {isLoading ? (
-            <p className="text-brand-gray">Loading electricians...</p>
+            <p className="text-gray-600 dark:text-brand-gray">
+              Loading electricians...
+            </p>
           ) : (
-            <ul className="divide-y divide-white/10">
+            <ul className="divide-y divide-black/10 dark:divide-white/10">
               {electricians.map((e) => (
                 <li
                   key={e._id}
                   className="flex items-center justify-between gap-4 py-4"
                 >
                   <div>
-                    <p className="font-bold text-brand-white">{e.name}</p>
-                    <p className="text-sm text-brand-gray">{e.phone}</p>
+                    <p className="font-bold text-gray-900 dark:text-brand-white">
+                      {e.name}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-brand-gray">
+                      {e.phone}
+                    </p>
                   </div>
                   <button
                     onClick={() => handleDelete(e._id)}

@@ -13,7 +13,7 @@ function FaqSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
-      className="bg-brand-black py-24 sm:py-32"
+      className="bg-white py-24 dark:bg-brand-black sm:py-32"
       aria-labelledby="faq-title"
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]">
@@ -22,7 +22,7 @@ function FaqSection() {
           title={<span id="faq-title">Frequently asked questions.</span>}
           description="A few helpful answers before you make a service request."
         />
-        <div className="divide-y divide-white/10 border-y border-white/10">
+        <div className="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-y dark:border-white/10">
           {faqs.map((faq, index) => {
             const isOpen = openQuestion === index;
             const panelId = `faq-panel-${index}`;
@@ -31,7 +31,7 @@ function FaqSection() {
               <div key={faq.question}>
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-bold text-brand-white"
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-bold text-gray-900 dark:text-brand-white"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => setOpenQuestion(isOpen ? -1 : index)}
@@ -46,7 +46,7 @@ function FaqSection() {
                 {isOpen && (
                   <p
                     id={panelId}
-                    className="max-w-3xl pb-7 leading-8 text-brand-gray" // Increased max-width, padding, and line-height
+                    className="max-w-3xl pb-7 leading-8 text-gray-600 dark:text-brand-gray" // Increased max-width, padding, and line-height
                   >
                     {faq.answer}
                   </p>

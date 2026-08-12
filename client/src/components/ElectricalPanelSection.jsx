@@ -27,7 +27,7 @@ function ElectricalPanelSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut" }} // Increased section padding
-      className="scroll-mt-24 bg-brand-black py-24 sm:py-32"
+      className="scroll-mt-24 bg-white py-24 dark:bg-brand-black sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
@@ -41,11 +41,11 @@ function ElectricalPanelSection() {
           {" "}
           {/* Increased grid gap */}
           {/* Left Column: Panel Visualization */}
-          <div className="rounded-3xl border border-white/10 bg-brand-dark p-5 sm:p-7">
+          <div className="rounded-3xl border border-black/10 bg-gray-100 p-5 dark:border-white/10 dark:bg-brand-dark sm:p-7">
             {" "}
             {/* Increased padding */}
             <div
-              className="rounded-xl border-4 border-[#3b4142] bg-[#171c1d] p-5 shadow-2xl sm:p-7" // Increased padding
+              className="rounded-xl border-4 border-gray-300 bg-gray-200 p-5 shadow-2xl dark:border-[#3b4142] dark:bg-[#171c1d] sm:p-7" // Increased padding
               aria-label="Simplified electrical panel diagram"
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-4">
@@ -55,13 +55,13 @@ function ElectricalPanelSection() {
                     className="text-brand-yellow"
                     aria-hidden="true"
                   />
-                  <span className="text-base font-bold tracking-wide">
+                  <span className="text-base font-bold tracking-wide text-gray-900 dark:text-white">
                     {" "}
                     {/* Increased font size */}
                     DISTRIBUTION PANEL
                   </span>
                 </div>
-                <span className="text-sm font-bold text-brand-gray">
+                <span className="text-sm font-bold text-gray-600 dark:text-brand-gray">
                   {" "}
                   {/* Increased font size */}
                   EDUCATIONAL DEMO
@@ -185,7 +185,7 @@ function ElectricalPanelSection() {
                       type="button"
                       onClick={() => setSelectedId(component.id)}
                       aria-pressed={component.id === selectedId}
-                      className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${component.id === selectedId ? "border-brand-yellow bg-brand-yellow text-brand-black" : "border-white/15 text-brand-gray hover:border-brand-yellow/50 hover:text-brand-white"}`} // Increased padding and font size
+                      className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${component.id === selectedId ? "border-brand-yellow bg-brand-yellow text-brand-black" : "border-gray-300 text-gray-500 hover:border-brand-yellow/50 hover:text-gray-900 dark:border-white/15 dark:text-brand-gray dark:hover:text-brand-white"}`} // Increased padding and font size
                     >
                       {component.label}
                     </button>
@@ -199,7 +199,7 @@ function ElectricalPanelSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
-            className="sticky top-28 rounded-3xl border border-brand-yellow/30 bg-brand-dark p-8 sm:p-9" // Increased padding
+            className="sticky top-28 rounded-3xl border border-brand-yellow/30 bg-gray-100 p-8 dark:bg-brand-dark sm:p-9" // Increased padding
             aria-labelledby="selected-component-title"
             aria-live="assertive"
           >
@@ -211,11 +211,11 @@ function ElectricalPanelSection() {
             </p>
             <h3
               id="selected-component-title"
-              className="mt-2 text-4xl font-extrabold" // Increased font size
+              className="mt-2 text-4xl font-extrabold text-gray-900 dark:text-white" // Increased font size
             >
               {selectedComponent.label}
             </h3>
-            <p className="mt-1 text-sm font-bold text-brand-gray">
+            <p className="mt-1 text-sm font-bold text-gray-600 dark:text-brand-gray">
               {selectedComponent.category}
             </p>
 
@@ -230,7 +230,7 @@ function ElectricalPanelSection() {
               </figure>
             )}
 
-            <p className="mt-5 leading-8 text-brand-gray">
+            <p className="mt-5 leading-8 text-gray-600 dark:text-brand-gray">
               {" "}
               {/* Increased line-height */}
               {selectedComponent.purpose}
@@ -241,7 +241,7 @@ function ElectricalPanelSection() {
                 Professional safety note{" "}
                 {/* Kept this small as it's an eyebrow */}
               </p>
-              <p className="mt-3 text-base leading-7 text-brand-white">
+              <p className="mt-3 text-base leading-7 text-gray-800 dark:text-brand-white">
                 {" "}
                 {/* Increased font size and line-height */}
                 {selectedComponent.professionalNote}
@@ -264,13 +264,13 @@ function PanelPart({ id, className, selectedId, onSelect }) {
       type="button"
       onClick={() => onSelect(id)}
       aria-pressed={isSelected}
-      className={`${className} relative flex h-18 items-end overflow-hidden rounded-lg border p-2.5 text-left transition-colors sm:h-22 ${isSelected ? "border-brand-yellow bg-brand-yellow/15" : "border-white/15 bg-brand-black/35 hover:border-brand-yellow/50"}`} // Increased height for better tap target
+      className={`${className} relative flex h-18 items-end overflow-hidden rounded-lg border p-2.5 text-left transition-colors sm:h-22 ${isSelected ? "border-brand-yellow bg-brand-yellow/15" : "border-gray-300 bg-gray-200 hover:border-brand-yellow/50 dark:border-white/15 dark:bg-brand-black/35 dark:hover:border-brand-yellow/50"}`} // Increased height for better tap target
     >
       <span
         aria-hidden="true"
         className={`absolute left-2.5 right-2.5 top-2.5 h-1 rounded-full ${isSelected ? "bg-brand-yellow" : "bg-white/20"}`}
       />
-      <span className="text-xs font-bold uppercase leading-tight tracking-wider text-brand-white">
+      <span className="text-xs font-bold uppercase leading-tight tracking-wider text-gray-800 dark:text-brand-white">
         {" "}
         {/* Increased font size */}
         {component.label}
