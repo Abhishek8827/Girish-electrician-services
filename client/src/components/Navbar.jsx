@@ -158,13 +158,13 @@ const Navbar = () => {
               <div className="border-t border-black/10 pt-4 dark:border-white/10">
                 <ThemeToggleButton />
               </div>
-              <a
-                href="#request-service"
+              <Link
+                to="/request-service"
                 className="bg-brand-yellow text-brand-black px-5 py-3 rounded-xl font-bold glow-yellow"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Request Service
-              </a>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>
