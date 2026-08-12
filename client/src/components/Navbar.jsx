@@ -72,35 +72,44 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-5 md:flex">
-            {navItems.map((item) => (
+          <div className="hidden items-center gap-4 md:flex">
+            <ul className="flex items-center gap-1">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="rounded-md px-3 py-2 text-base font-medium text-gray-600 transition-colors hover:text-brand-yellow dark:text-brand-gray"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to="/track-request"
+                  className="rounded-md px-3 py-2 text-sm font-bold text-gray-700 transition-colors hover:text-brand-yellow dark:text-brand-white"
+                >
+                  Track Request
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin"
+                  className="rounded-md px-3 py-2 text-sm font-bold text-gray-700 transition-colors hover:text-brand-yellow dark:text-brand-white"
+                >
+                  Admin Login
+                </Link>
+              </li>
+            </ul>
+            <div className="flex items-center gap-3">
+              <ThemeToggleButton />
               <a
-                key={item.name}
-                href={item.href}
-                className="text-base font-medium text-gray-600 transition-colors hover:text-brand-yellow dark:text-brand-gray"
+                href="#request-service"
+                className="bg-brand-yellow text-brand-black px-5 py-2 rounded-full font-bold text-sm glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95"
               >
-                {item.name}
+                Request Service
               </a>
-            ))}
-            <Link
-              to="/track-request"
-              className="text-sm font-bold text-gray-700 transition-colors hover:text-brand-yellow dark:text-brand-white"
-            >
-              Track Request
-            </Link>
-            <Link
-              to="/admin"
-              className="text-sm font-bold text-gray-700 transition-colors hover:text-brand-yellow dark:text-brand-white"
-            >
-              Admin Login
-            </Link>
-            <ThemeToggleButton />
-            <a
-              href="#request-service"
-              className="bg-brand-yellow text-brand-black px-5 py-2 rounded-full font-bold text-sm glow-yellow hover:bg-brand-yellow-glow transition-all active:scale-95"
-            >
-              Request Service
-            </a>
+            </div>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -129,42 +138,49 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full border-t border-black/10 bg-white p-6 dark:border-brand-black dark:bg-brand-dark md:hidden"
+              className="absolute top-full left-0 w-full border-t border-black/10 bg-white p-6 dark:border-white/10 dark:bg-brand-dark md:hidden"
             >
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-xl font-medium text-gray-600 hover:text-brand-yellow dark:text-brand-gray"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <Link
-                to="/track-request"
-                className="text-lg font-bold text-gray-700 hover:text-brand-yellow dark:text-brand-white"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Track Request
-              </Link>
-              <Link
-                to="/admin"
-                className="text-lg font-bold text-gray-700 hover:text-brand-yellow dark:text-brand-white"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Admin Login
-              </Link>
-              <div className="border-t border-black/10 pt-4 dark:border-white/10">
+              <ul className="flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="block rounded-lg px-4 py-2.5 text-lg font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-brand-yellow dark:text-brand-gray dark:hover:bg-white/5"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    to="/track-request"
+                    className="block rounded-lg px-4 py-2.5 text-lg font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-yellow dark:text-brand-white dark:hover:bg-white/5"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Track Request
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/admin"
+                    className="block rounded-lg px-4 py-2.5 text-lg font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-yellow dark:text-brand-white dark:hover:bg-white/5"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Admin Login
+                  </Link>
+                </li>
+              </ul>
+              <div className="my-6 border-t border-black/10 pt-6 dark:border-white/10">
                 <ThemeToggleButton />
               </div>
-              <Link
-                to="/request-service"
-                className="bg-brand-yellow text-brand-black px-5 py-3 rounded-xl font-bold glow-yellow"
+              <a
+                href="#request-service"
+                className="block w-full rounded-full bg-brand-yellow px-5 py-3 text-center font-bold text-brand-black glow-yellow"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Request Service
-              </Link>
+              </a>
             </motion.div>
           )}
         </AnimatePresence>
