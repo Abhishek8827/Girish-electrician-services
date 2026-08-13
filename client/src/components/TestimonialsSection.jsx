@@ -50,9 +50,10 @@ function TestimonialsSection() {
               <div className="flex items-center gap-4">
                 <img
                   src={`${import.meta.env.BASE_URL}${testimonial.image}`}
-                  alt={testimonial.name}
+                  alt={`${testimonial.name}, customer testimonial for Girish Electrician Services`}
                   className="h-14 w-14 rounded-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <h3 className="font-bold text-gray-900 dark:text-brand-white">

@@ -223,9 +223,10 @@ function ElectricalPanelSection() {
               <figure className="mt-5 overflow-hidden rounded-xl border border-white/10">
                 <img
                   src={selectedComponent.image}
-                  alt={selectedComponent.label}
+                  alt={`${selectedComponent.label} - electrical panel component for ${selectedComponent.category}`}
                   className="aspect-video w-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </figure>
             )}

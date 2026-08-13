@@ -14,10 +14,13 @@ function TrackRequestPage() {
 
   useSEOMeta({
     title: "Track Your Service Request | Girish Electrician Services",
-    description: "Track the real-time status of your electrical service request. Get updates on installation, repair, or maintenance work by Girish Electrician Services.",
+    description:
+      "Track the real-time status of your electrical service request. Get updates on installation, repair, or maintenance work by Girish Electrician Services.",
     ogTitle: "Track Your Electrical Service Request",
-    ogDescription: "Monitor your service request status in real-time with Girish Electrician Services",
-    canonical: "https://abhishek8827.github.io/Girish-electrician-services/track-request",
+    ogDescription:
+      "Monitor your service request status in real-time with Girish Electrician Services",
+    canonical:
+      "https://abhishek8827.github.io/Girish-electrician-services/track-request",
   });
 
   async function handleSubmit(event) {
