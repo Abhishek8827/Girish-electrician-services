@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../ThemeContext";
 
 function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme();

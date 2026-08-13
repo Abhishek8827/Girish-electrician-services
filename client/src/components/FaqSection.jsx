@@ -7,6 +7,19 @@ import SectionHeading from "./SectionHeading";
 function FaqSection() {
   const [openQuestion, setOpenQuestion] = useState(0);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 50 }}
@@ -16,6 +29,10 @@ function FaqSection() {
       className="bg-white py-24 dark:bg-brand-black sm:py-32"
       aria-labelledby="faq-title"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <SectionHeading
           eyebrow="Answers first"
