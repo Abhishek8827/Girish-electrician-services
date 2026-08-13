@@ -39,7 +39,11 @@ export function useSEOMeta(config = {}) {
 
     // Update Open Graph tags
     updateOrCreateMetaTag("property", "og:title", ogTitle || title);
-    updateOrCreateMetaTag("property", "og:description", ogDescription || description);
+    updateOrCreateMetaTag(
+      "property",
+      "og:description",
+      ogDescription || description,
+    );
     updateOrCreateMetaTag("property", "og:image", ogImage);
 
     // Update canonical link
@@ -55,7 +59,11 @@ export function useSEOMeta(config = {}) {
 
     // Update Twitter Card tags
     updateOrCreateMetaTag("name", "twitter:title", ogTitle || title);
-    updateOrCreateMetaTag("name", "twitter:description", ogDescription || description);
+    updateOrCreateMetaTag(
+      "name",
+      "twitter:description",
+      ogDescription || description,
+    );
     updateOrCreateMetaTag("name", "twitter:image", ogImage);
   }, [title, description, ogTitle, ogDescription, ogImage, canonical, noindex]);
 }
@@ -64,10 +72,11 @@ export function useSEOMeta(config = {}) {
  * Helper function to update or create meta tags
  */
 function updateOrCreateMetaTag(attrType, attrValue, content) {
-  const selector = attrType === "property" 
-    ? `meta[property="${attrValue}"]`
-    : `meta[name="${attrValue}"]`;
-  
+  const selector =
+    attrType === "property"
+      ? `meta[property="${attrValue}"]`
+      : `meta[name="${attrValue}"]`;
+
   let tag = document.querySelector(selector);
   if (!tag) {
     tag = document.createElement("meta");
@@ -119,7 +128,9 @@ export function generateReviewSchema(reviews) {
 export function injectStructuredData(schema) {
   if (!schema) return;
 
-  let script = document.querySelector('script[data-schema-id="' + schema["@type"] + '"]');
+  let script = document.querySelector(
+    'script[data-schema-id="' + schema["@type"] + '"]',
+  );
   if (!script) {
     script = document.createElement("script");
     script.type = "application/ld+json";
