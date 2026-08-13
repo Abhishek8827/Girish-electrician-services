@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
 import { MdArrowBack, MdCheckCircle, MdSearch, MdShield } from "react-icons/md";
 import { trackServiceRequest } from "../api/serviceRequests";
+import { useSEOMeta } from "../hooks/useSEOMeta";
 
 function TrackRequestPage() {
   const [requestId, setRequestId] = useState("");
@@ -10,6 +11,14 @@ function TrackRequestPage() {
   const [request, setRequest] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useSEOMeta({
+    title: "Track Your Service Request | Girish Electrician Services",
+    description: "Track the real-time status of your electrical service request. Get updates on installation, repair, or maintenance work by Girish Electrician Services.",
+    ogTitle: "Track Your Electrical Service Request",
+    ogDescription: "Monitor your service request status in real-time with Girish Electrician Services",
+    canonical: "https://abhishek8827.github.io/Girish-electrician-services/track-request",
+  });
 
   async function handleSubmit(event) {
     event.preventDefault();

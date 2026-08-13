@@ -7,6 +7,7 @@ import {
   MdVisibilityOff,
 } from "react-icons/md";
 import { loginAdmin } from "../api/admin";
+import { useSEOMeta } from "../hooks/useSEOMeta";
 
 function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,12 @@ function AdminLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
+
+  useSEOMeta({
+    title: "Admin Login | Girish Electrician Services",
+    description: "Admin login page for managing electrical service requests.",
+    noindex: true, // Don't index this page in search engines
+  });
 
   if (localStorage.getItem("girish_admin_token"))
     return <Navigate to="/admin/requests" replace />;

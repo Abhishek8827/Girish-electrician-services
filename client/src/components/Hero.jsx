@@ -189,10 +189,11 @@ const Hero = () => {
             <div className="relative aspect-square w-full max-w-sm rounded-3xl border-2 border-brand-yellow/20 bg-brand-dark shadow-2xl sm:max-w-md overflow-hidden">
               <motion.img
                 src={`${import.meta.env.BASE_URL}electrician.png`}
-                alt="Professional electrician standing beside an electrical distribution panel"
+                alt="Certified master electrician installing and inspecting electrical distribution panel for residential and commercial safety"
                 className="h-full w-full object-cover"
                 decoding="async"
                 fetchPriority="high"
+                loading="eager"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               />
