@@ -198,7 +198,7 @@ const Hero = () => {
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-brand-black/40 via-transparent to-transparent"
               />
               <motion.div
                 aria-hidden="true"
