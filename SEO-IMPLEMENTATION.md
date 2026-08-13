@@ -188,6 +188,7 @@ export default function FaqSection() {
 ## Common SEO Mistakes to Avoid
 
 ❌ **Don't:**
+
 - Use multiple H1 tags on one page
 - Keyword stuff (overuse keywords unnaturally)
 - Use low-quality or blurry images
@@ -198,6 +199,7 @@ export default function FaqSection() {
 - Have slow page load times
 
 ✅ **Do:**
+
 - Write naturally for users first
 - Create unique, valuable content
 - Use proper heading hierarchy
