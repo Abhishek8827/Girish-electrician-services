@@ -133,6 +133,18 @@ export const faqs = [
   },
 ];
 
+export const formServiceTypes = [
+  "Home wiring",
+  "Office wiring",
+  "Electrical repair",
+  "Electrical panel / DB / MCB",
+  "Lighting installation",
+  "Fan, switch, or socket installation",
+  "Safety inspection",
+  "Emergency electrical support",
+  "Other professional electrical service",
+];
+
 export const panelComponents = [
   {
     id: "main-breaker",

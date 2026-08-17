@@ -9,6 +9,7 @@ import {
   MdFileUpload,
 } from "react-icons/md";
 import { submitServiceRequest } from "../api/serviceRequests";
+import { formServiceTypes as serviceTypes } from "../data/siteContent";
 import SectionHeading from "./SectionHeading";
 
 const initialForm = {
@@ -24,18 +25,6 @@ const initialForm = {
   emergency: false,
   image: null,
 };
-
-const serviceTypes = [
-  "Home wiring",
-  "Office wiring",
-  "Electrical repair",
-  "Electrical panel / DB / MCB",
-  "Lighting installation",
-  "Fan, switch, or socket installation",
-  "Safety inspection",
-  "Emergency electrical support",
-  "Other professional electrical service",
-];
 
 const propertyTypes = [
   "Home",
