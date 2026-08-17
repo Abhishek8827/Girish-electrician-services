@@ -18,6 +18,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastY = useRef(0);
+  const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,11 +36,24 @@ const Navbar = () => {
         setIsHidden(false);
       }
       lastY.current = currentY;
+
+      // Active link highlighting on scroll
+      let currentSection = "";
+      for (const item of navItems) {
+        const section = document.querySelector(item.href);
+        if (section) {
+          // 150px offset for navbar height and breathing room
+          if (currentY >= section.offsetTop - 150) {
+            currentSection = item.href;
+          }
+        }
+      }
+      setActiveHash(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen]); // No need to add navItems here as it's constant
 
   return (
     <>
@@ -78,7 +92,11 @@ const Navbar = () => {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="rounded-md px-3 py-2 text-base font-medium text-gray-600 transition-colors hover:text-brand-yellow dark:text-brand-gray"
+                    className={`rounded-md px-3 py-2 text-base font-medium transition-colors ${
+                      activeHash === item.href
+                        ? "text-brand-yellow"
+                        : "text-gray-600 hover:text-brand-yellow dark:text-brand-gray"
+                    }`}
                   >
                     {item.name}
                   </a>
@@ -145,8 +163,12 @@ const Navbar = () => {
                   <li key={item.name}>
                     <a
                       href={item.href}
-                      className="block rounded-lg px-4 py-2.5 text-lg font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-brand-yellow dark:text-brand-gray dark:hover:bg-white/5"
                       onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block rounded-lg px-4 py-2.5 text-lg font-medium transition-colors ${
+                        activeHash === item.href
+                          ? "bg-gray-100 text-brand-yellow dark:bg-white/5"
+                          : "text-gray-600 hover:bg-gray-100 hover:text-brand-yellow dark:text-brand-gray dark:hover:bg-white/5"
+                      }`}
                     >
                       {item.name}
                     </a>
