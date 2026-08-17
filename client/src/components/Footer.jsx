@@ -99,7 +99,10 @@ function Footer() {
               </li>
               {businessConfig.emergencyContact && (
                 <li className="flex items-center gap-2.5">
-                  <MdPhone size={16} className="shrink-0 text-red-400" />
+                  <MdPhone
+                    size={16}
+                    className="shrink-0 text-red-600 dark:text-red-300"
+                  />
                   <a
                     href={`tel:${businessConfig.emergencyContact}`}
                     className="text-red-600 transition-colors hover:text-red-700 dark:text-red-300 dark:hover:text-red-200"

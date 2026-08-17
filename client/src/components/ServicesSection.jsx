@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useId, useState } from "react";
 import {
   MdArrowForward,
@@ -72,22 +72,6 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
 
 function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
   const SceneIcon = scene.icon;
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useTransform(mouseY, [-150, 150], [8, -8]);
-  const rotateY = useTransform(mouseX, [-200, 200], [-8, 8]);
-
-  function handleMouseMove({ currentTarget, clientX, clientY }) {
-    const { left, top, width, height } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left - width / 2);
-    mouseY.set(clientY - top - height / 2);
-  }
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
 
   return (
     <div
@@ -151,7 +135,7 @@ function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
         >
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(250,204,21,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.15)_1px,transparent_1px)] [background-size:28px_28px]"
+            className="absolute inset-0 bg-[linear-gradient(rgba(250,204,21,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.15)_1px,transparent_1px)] bg-size-[28px_28px] opacity-30"
           />
           <div className="relative flex h-full flex-col justify-between">
             <div className="flex items-center justify-between ">

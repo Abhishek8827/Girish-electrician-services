@@ -19,6 +19,7 @@ function ProcessSection() {
           title="A professional route from request to resolution."
           description="We keep the process easy to understand, so you know what happens before work begins."
           align="center"
+          variant="dark"
         />
 
         <ol className="mx-auto mt-16 max-w-4xl">

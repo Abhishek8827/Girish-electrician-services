@@ -147,7 +147,7 @@ function AdminElectriciansPage() {
                   </div>
                   <button
                     onClick={() => handleDelete(e._id)}
-                    className="text-red-400 hover:text-red-300"
+                    className="text-red-500 transition-colors hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                     aria-label={`Delete ${e.name}`}
                   >
                     <MdDelete size={20} />
