@@ -50,7 +50,7 @@ const sceneByCategory = {
 
 function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
   return (
-    <button
+    <motion.button
       type="button"
       role="tab"
       id={tabId}
@@ -62,9 +62,11 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
           ? "border-brand-yellow bg-brand-yellow text-brand-black" // Inactive state changes with theme
           : "border-gray-300 bg-white text-gray-600 hover:border-brand-yellow/50 hover:text-gray-900 dark:border-white/10 dark:bg-brand-black/30 dark:text-brand-gray dark:hover:text-brand-white"
       }`}
+      whileHover={{ scale: 1.03, y: -2 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       {category.label}
-    </button>
+    </motion.button>
   );
 }
 

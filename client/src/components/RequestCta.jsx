@@ -420,10 +420,12 @@ function RequestCta({ initialServiceType }) {
                 </span>
               </label>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-8 py-4.5 text-lg font-bold text-brand-black transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto" // Increased padding and font size
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-8 py-4.5 text-lg font-bold text-brand-black disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto" // Increased padding and font size
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 {isSubmitting ? (
                   <>
@@ -437,7 +439,7 @@ function RequestCta({ initialServiceType }) {
                 ) : (
                   "Submit service request"
                 )}
-              </button>
+              </motion.button>
             </form>
           )}
         </div>

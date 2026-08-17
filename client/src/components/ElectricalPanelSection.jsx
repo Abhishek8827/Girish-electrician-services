@@ -180,15 +180,21 @@ function ElectricalPanelSection() {
                 {Object.values(componentCategories)
                   .flat()
                   .map((component) => (
-                    <button
+                    <motion.button
                       key={component.id}
                       type="button"
                       onClick={() => setSelectedId(component.id)}
                       aria-pressed={component.id === selectedId}
                       className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${component.id === selectedId ? "border-brand-yellow bg-brand-yellow text-brand-black" : "border-gray-300 text-gray-500 hover:border-brand-yellow/50 hover:text-gray-900 dark:border-white/15 dark:text-brand-gray dark:hover:text-brand-white"}`} // Increased padding and font size
+                      whileHover={{ scale: 1.05 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
                     >
                       {component.label}
-                    </button>
+                    </motion.button>
                   ))}
               </div>
             </section>
@@ -261,11 +267,13 @@ function PanelPart({ id, className, selectedId, onSelect }) {
   const isSelected = selectedId === id;
 
   return (
-    <button
+    <motion.button
       type="button"
       onClick={() => onSelect(id)}
       aria-pressed={isSelected}
       className={`${className} relative flex h-18 items-end overflow-hidden rounded-lg border p-2.5 text-left transition-colors sm:h-22 ${isSelected ? "border-brand-yellow bg-brand-yellow/15" : "border-gray-300 bg-gray-200 hover:border-brand-yellow/50 dark:border-white/15 dark:bg-brand-black/35 dark:hover:border-brand-yellow/50"}`} // Increased height for better tap target
+      whileHover={{ scale: 1.03, y: -2 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       <span
         aria-hidden="true"
@@ -276,7 +284,7 @@ function PanelPart({ id, className, selectedId, onSelect }) {
         {/* Increased font size */}
         {component.label}
       </span>
-    </button>
+    </motion.button>
   );
 }
 

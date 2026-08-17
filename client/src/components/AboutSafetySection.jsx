@@ -182,12 +182,14 @@ function AboutSafetySection() {
               assessment instead.
             </p>
           </div>
-          <a
+          <motion.a
             href="#request-service"
-            className="inline-flex justify-center rounded-full bg-brand-black px-6 py-3 text-sm font-bold text-brand-white transition-transform hover:scale-[1.02]"
+            className="inline-flex justify-center rounded-full bg-brand-black px-6 py-3 text-sm font-bold text-brand-white"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             Request support
-          </a>
+          </motion.a>
         </div>
       </motion.section>
     </>
