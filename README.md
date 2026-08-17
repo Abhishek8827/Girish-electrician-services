@@ -24,94 +24,113 @@ This repository contains two folders:
 
 ## Prerequisites
 
-- Node.js 18+ installed
-- npm installed
-- MongoDB connection string (Atlas or local MongoDB)
+Before you begin, ensure you have the following installed on your system:
 
-## Clone the repository
+- **Node.js**: Version 18 or higher. Download from nodejs.org. (This automatically includes `npm`).
+- **Git**: Required to clone the repository. Download from git-scm.com.
+- **MongoDB Connection String**: You need a database connection URL. You can get a free one from MongoDB Atlas or by running MongoDB locally.
+
+## 🚀 Getting Started: Local Development Setup
+
+Follow these steps to get the application running on your local machine.
+
+### 1. Clone the Repository
+
+Open your terminal, navigate to the directory where you want to store the project, and run:
 
 ```bash
-# Clone the repository
 git clone https://github.com/Abhishek8827/Girish-electrician-services.git
 cd Girish-electrician-services
 ```
 
-## Backend setup
+### 2. Set Up the Backend (Server)
 
-1. Install server dependencies:
+The backend server handles API requests, user authentication, and database interactions.
+
+a. **Install Dependencies**: Navigate into the `server` directory and install the required packages.
 
 ```bash
 cd server
 npm install
 ```
 
-2. Create a `.env` file inside `server/` with the required environment variables.
+b. **Configure Environment Variables**: Create a `.env` file in the `server/` directory. This file stores sensitive information like database credentials and secret keys.
 
-Example `server/.env`:
+Copy the following into your new `server/.env` file and replace the placeholder values with your own:
 
 ```env
+# Replace with your MongoDB connection string
 MONGODB_URI=your-mongodb-connection-string
-JWT_SECRET=some-strong-secret
+
+# A long, random string for signing authentication tokens
+JWT_SECRET=your-strong-jwt-secret
+
+# Credentials for the admin user
 ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD_HASH=your-generated-password-hash
+ADMIN_PASSWORD_HASH= # This will be generated in the next step
+
+# The URL of the frontend application (for CORS)
 CLIENT_URL=http://localhost:5173
+
+# The port for the server to run on (optional)
 PORT=5000
 ```
 
-3. Generate the admin password hash:
+c. **Generate Admin Password**: To securely store the admin password, we need to hash it. Run the following command and enter a password when prompted.
 
 ```bash
 npm run hash-admin-password
 ```
 
-Copy the generated hash from the terminal and paste it into `ADMIN_PASSWORD_HASH` in `server/.env`.
+**Copy the generated hash** from the terminal output and paste it as the value for `ADMIN_PASSWORD_HASH` in your `server/.env` file.
 
-4. Start the backend server:
+### 3. Set Up the Frontend (Client)
 
-```bash
-npm run dev
-```
+The frontend is the React application that users see and interact with.
 
-The API will start at `http://localhost:5000` by default.
-
-## Frontend setup
-
-1. Install client dependencies:
+a. **Install Dependencies**: In a **new terminal window/tab**, navigate to the `client` directory and install its packages.
 
 ```bash
-cd ../client
+# From the project root directory:
+cd client
 npm install
 ```
 
-2. (Optional) Create a `.env` file inside `client/` to customize the API URL.
-
-Example `client/.env`:
+b. **Environment Variables (Optional)**: The client is pre-configured to connect to the backend at `http://localhost:5000`. If you changed the `PORT` in the server's `.env` file, you must create a `client/.env` file and specify the correct API URL:
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+# Example for client/.env
+VITE_API_URL=http://localhost:YOUR_PORT_NUMBER/api
 ```
 
-3. Start the frontend app:
+### 4. Run the Application
 
-```bash
-npm run dev
-```
+You need to have both the backend and frontend servers running at the same time.
 
-The frontend will open at `http://localhost:5173`.
+- **Start the Backend Server**: In your terminal for the `server` directory, run:
 
-## Running the app
+  ```bash
+  npm run dev
+  ```
 
-- Open the website in your browser at `http://localhost:5173`
-- Submit a service request on the home page
-- Track requests using the Track Request page
-- Log in to the admin portal at `/admin`
+  The API will be running at `http://localhost:5000`.
 
-## Admin access
+- **Start the Frontend App**: In your terminal for the `client` directory, run:
+  ```bash
+  npm run dev
+  ```
+  The application will open in your browser at `http://localhost:5173`.
 
-- Use `ADMIN_EMAIL` and the password you used to generate `ADMIN_PASSWORD_HASH`
-- After login, the admin pages are available at:
-  - `/admin/requests`
-  - `/admin/electricians`
+You can now use the website, submit service requests, and track them.
+
+## Admin Access
+
+To access the admin dashboard:
+
+1.  Navigate to `http://localhost:5173/admin`.
+2.  Log in using the `ADMIN_EMAIL` from your `server/.env` file and the **original password** you chose during the password hashing step.
+
+Once logged in, you can manage service requests and electricians.
 
 ## Production build
 
