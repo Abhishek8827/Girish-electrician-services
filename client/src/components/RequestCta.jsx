@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import {
   MdCheckCircleOutline,
@@ -458,9 +458,10 @@ function RequestCta({ initialServiceType }) {
 }
 
 function Field({ label, hint, error, children }) {
-  const control = children.props;
-  const inputId = control.id || control.htmlFor;
+  const inputId = children.props.id || children.props.htmlFor;
+  const hintId = hint ? `${inputId}-hint` : undefined;
   const errorId = error ? `${inputId}-error` : undefined;
+  const describedBy = [hintId, errorId].filter(Boolean).join(" ");
 
   return (
     <div>
@@ -470,9 +471,14 @@ function Field({ label, hint, error, children }) {
       >
         {label}
       </label>
-      {children}
+      {React.cloneElement(children, {
+        "aria-describedby": describedBy || undefined,
+      })}
       {hint && (
-        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-brand-gray">
+        <p
+          id={hintId}
+          className="mt-2 text-sm leading-6 text-gray-600 dark:text-brand-gray"
+        >
           {hint}
         </p>
       )}{" "}

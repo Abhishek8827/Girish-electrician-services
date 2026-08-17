@@ -129,7 +129,7 @@ export const faqs = [
   {
     question: "How will I request a visit?",
     answer:
-      "The next phase adds the full service-request form, including contact details, preferred timing, property type, and an optional image upload.",
+      "Use the service request form on our website. Provide your contact details, describe the issue, and choose a preferred time. You can also upload an image to help us understand the problem.",
   },
 ];
 
