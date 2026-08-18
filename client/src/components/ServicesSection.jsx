@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useId, useState } from "react";
+import React, { useCallback, useId, useState } from "react";
 import {
   MdArrowForward,
   MdBuild,
@@ -48,7 +48,13 @@ const sceneByCategory = {
   },
 };
 
-function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
+const ServiceTab = React.memo(function ServiceTab({
+  category,
+  isActive,
+  onSelect,
+  tabId,
+  panelId,
+}) {
   return (
     <motion.button
       type="button"
@@ -56,7 +62,7 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
       id={tabId}
       aria-controls={panelId}
       aria-selected={isActive}
-      onClick={onClick}
+      onClick={() => onSelect(category)}
       className={`shrink-0 rounded-full border px-6 py-3.5 text-left text-base font-bold transition-colors lg:w-full lg:rounded-xl ${
         isActive // Active state is the same for both themes
           ? "border-brand-yellow bg-brand-yellow text-brand-black" // Inactive state changes with theme
@@ -68,7 +74,7 @@ function ServiceTab({ category, isActive, onClick, tabId, panelId }) {
       {category.label}
     </motion.button>
   );
-}
+});
 
 function ServiceTabPanel({ category, scene, panelId, tabId, onSelectService }) {
   const SceneIcon = scene.icon;
@@ -185,6 +191,10 @@ function ServicesSection({ onSelectService }) {
   const [activeCategory, setActiveCategory] = useState(serviceCategories[0]);
   const id = useId();
 
+  const handleCategoryChange = useCallback((category) => {
+    setActiveCategory(category);
+  }, []);
+
   return (
     <motion.section
       id="services"
@@ -215,7 +225,7 @@ function ServicesSection({ onSelectService }) {
                   key={category.id}
                   category={category}
                   isActive={category.id === activeCategory.id}
-                  onClick={() => setActiveCategory(category)}
+                  onSelect={handleCategoryChange}
                   tabId={tabId}
                   panelId={panelId}
                 />

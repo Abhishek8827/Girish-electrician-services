@@ -6,11 +6,18 @@ import {
   MdPhone,
 } from "react-icons/md";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import React, { useMemo } from "react";
 import { businessConfig } from "../data/businessConfig";
 
-function Footer() {
-  const whatsappPhone = businessConfig.phone.replace(/[^0-9]/g, "");
-  const telPhone = businessConfig.phone.replace(/[^0-9+]/g, "");
+const Footer = React.memo(function Footer() {
+  const whatsappPhone = useMemo(
+    () => businessConfig.phone.replace(/[^0-9]/g, ""),
+    [],
+  );
+  const telPhone = useMemo(
+    () => businessConfig.phone.replace(/[^0-9+]/g, ""),
+    [],
+  );
   return (
     <footer className="border-t border-black/10 bg-gray-50 text-gray-600 dark:border-white/10 dark:bg-brand-black dark:text-brand-gray">
       <div className="mx-auto max-w-7xl px-6 py-20">
@@ -215,6 +222,6 @@ function Footer() {
       </div>
     </footer>
   );
-}
+});
 
 export default Footer;
